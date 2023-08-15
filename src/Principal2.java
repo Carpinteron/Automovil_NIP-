@@ -1,8 +1,3 @@
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.Timer;
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -12,31 +7,15 @@ import javax.swing.Timer;
  *
  * @author carpinteron
  */
-public class Principal extends javax.swing.JFrame {
+public class Principal2 extends javax.swing.JFrame {
 
     /**
      * Creates new form Principal
      */
-    public Principal() {
+    public Principal2() {
         initComponents();
-        this.setSize(723,407);
-        this.setLocationRelativeTo(null);//centrar ventana
-        // Guardar referencia al objeto actual
-        this.setResizable(false);
-        Principal thisFrame = this;
-
-        Timer timer = new Timer(4000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Código para abrir el segundo frame aquí
-                Principal2 i = new Principal2();
-                
-                i.setVisible(true);
-                thisFrame.setVisible(false); // Utilizar thisFrame en lugar de this
-            }
-        });
-        timer.setRepeats(false);
-        timer.start();
+        this.setSize(1300, 700);
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -49,39 +28,37 @@ public class Principal extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 900));
         setResizable(false);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setText("Tamaño por confirmar");
+        jLabel1.setFont(new java.awt.Font("SWGothe", 0, 24)); // NOI18N
+        jLabel1.setText("NIP");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel2.setText("**AQUI INTRO BIEN WOW**");
+        jButton1.setText("jButton1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(204, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(198, 198, 198))
             .addGroup(layout.createSequentialGroup()
-                .addGap(229, 229, 229)
+                .addGap(137, 137, 137)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(772, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(153, 153, 153))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(135, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(116, 116, 116)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(95, 95, 95)
                 .addComponent(jLabel1)
-                .addGap(92, 92, 92))
+                .addGap(60, 60, 60)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -123,7 +100,7 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }
