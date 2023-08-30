@@ -254,6 +254,7 @@ public class Principal extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 204, 204));
@@ -265,12 +266,15 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(539, 33, -1, -1));
 
         Boton_Empleados.setText("E");
+        Boton_Empleados.setActionCommand("");
+        Boton_Empleados.setBorderPainted(false);
+        Boton_Empleados.setContentAreaFilled(false);
         Boton_Empleados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Boton_EmpleadosActionPerformed(evt);
             }
         });
-        getContentPane().add(Boton_Empleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 141, 53, 49));
+        getContentPane().add(Boton_Empleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 53, 49));
 
         Boton_Ventas.setText("V");
         Boton_Ventas.addActionListener(new java.awt.event.ActionListener() {
@@ -278,7 +282,7 @@ public class Principal extends javax.swing.JFrame {
                 Boton_VentasActionPerformed(evt);
             }
         });
-        getContentPane().add(Boton_Ventas, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 224, 53, 50));
+        getContentPane().add(Boton_Ventas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 53, 50));
 
         Boton_Inventario.setText("I");
         Boton_Inventario.addActionListener(new java.awt.event.ActionListener() {
@@ -286,10 +290,10 @@ public class Principal extends javax.swing.JFrame {
                 Boton_InventarioActionPerformed(evt);
             }
         });
-        getContentPane().add(Boton_Inventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 318, 53, 51));
+        getContentPane().add(Boton_Inventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 53, 51));
 
         jButton1.setText("N");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1167, 27, 53, 53));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 560, 53, 53));
 
         jButton2.setText("Info.");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -297,8 +301,9 @@ public class Principal extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 120, 60, 53));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 630, 60, 53));
 
+        jPanel1.setOpaque(false);
         jPanel1.setPreferredSize(new java.awt.Dimension(1240, 700));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -309,10 +314,14 @@ public class Principal extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 430, Short.MAX_VALUE)
+            .addGap(0, 700, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 81, 1160, 430));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, 1160, 700));
+
+        jLabel2.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 36)); // NOI18N
+        jLabel2.setText("ARCHEY");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 140, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -375,6 +384,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
