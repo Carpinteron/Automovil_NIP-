@@ -319,26 +319,47 @@ public class Principal extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("SWGothe", 0, 24)); // NOI18N
         jLabel4.setText("|          Ventas");
 
+        TablaVENTAS.setBackground(new java.awt.Color(255, 204, 204));
+        TablaVENTAS.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         TablaVENTAS.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Vendedor", "C.C.", "Tipo Auto", "Codigo", "Monto de Venta", "Seleccionar"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.Boolean.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        TablaVENTAS.setColumnSelectionAllowed(true);
+        TablaVENTAS.setDoubleBuffered(true);
+        TablaVENTAS.setGridColor(new java.awt.Color(102, 0, 0));
+        TablaVENTAS.setRequestFocusEnabled(false);
+        TablaVENTAS.setRowHeight(40);
+        TablaVENTAS.setSelectionBackground(new java.awt.Color(255, 153, 153));
+        TablaVENTAS.setSelectionForeground(new java.awt.Color(153, 0, 0));
+        TablaVENTAS.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        TablaVENTAS.setShowGrid(true);
+        TablaVENTAS.setShowVerticalLines(true);
         jScrollPane3.setViewportView(TablaVENTAS);
+        TablaVENTAS.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        TablaVENTAS.getAccessibleContext().setAccessibleName("");
 
         javax.swing.GroupLayout PanelVentasLayout = new javax.swing.GroupLayout(PanelVentas);
         PanelVentas.setLayout(PanelVentasLayout);
@@ -391,24 +412,51 @@ public class Principal extends javax.swing.JFrame {
 
         getContentPane().add(PanelInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, 1160, 700));
 
+        PanelEmpleados.setBackground(new java.awt.Color(239, 239, 239));
+        PanelEmpleados.setForeground(new java.awt.Color(0, 0, 0));
         PanelEmpleados.setOpaque(false);
         PanelEmpleados.setPreferredSize(new java.awt.Dimension(1240, 700));
 
         jLabel1.setFont(new java.awt.Font("SWGothe", 0, 24)); // NOI18N
         jLabel1.setText("|      Empleados");
 
+        TablaEMPLEADOS.setBackground(new java.awt.Color(255, 204, 204));
+        TablaEMPLEADOS.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        TablaEMPLEADOS.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        TablaEMPLEADOS.setForeground(new java.awt.Color(255, 153, 51));
         TablaEMPLEADOS.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nombre", "C.C.", "Cargo", "Telf. Contacto", "Fecha Ingreso", "Salacrio Mensual", "Salario+Comisiones", "Seleccionado"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.String.class, java.lang.Float.class, java.lang.Float.class, java.lang.Boolean.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        TablaEMPLEADOS.setColumnSelectionAllowed(true);
+        TablaEMPLEADOS.setGridColor(new java.awt.Color(102, 0, 0));
+        TablaEMPLEADOS.setRowHeight(40);
+        TablaEMPLEADOS.setSelectionBackground(new java.awt.Color(255, 153, 153));
+        TablaEMPLEADOS.setSelectionForeground(new java.awt.Color(102, 0, 0));
+        TablaEMPLEADOS.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        TablaEMPLEADOS.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        TablaEMPLEADOS.setShowGrid(true);
         jScrollPane1.setViewportView(TablaEMPLEADOS);
+        TablaEMPLEADOS.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         javax.swing.GroupLayout PanelEmpleadosLayout = new javax.swing.GroupLayout(PanelEmpleados);
         PanelEmpleados.setLayout(PanelEmpleadosLayout);
@@ -445,28 +493,35 @@ public class Principal extends javax.swing.JFrame {
     JPanel Actual;
    
     private void Boton_EmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_EmpleadosActionPerformed
-        PanelEmpleados.setVisible(true);
-        PanelEmpleados.setEnabled(true);
+        if(Actual!=PanelEmpleados){
+            PanelEmpleados.setVisible(true);
+            PanelEmpleados.setEnabled(true);
         CambiaEstadoPANEL(Actual);
         Actual=PanelEmpleados;
         //System.out.println(Actual);
+        }
+        
         
     }//GEN-LAST:event_Boton_EmpleadosActionPerformed
 
     private void Boton_VentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_VentasActionPerformed
-       PanelVentas.setVisible(true);
+       if(Actual!=PanelVentas){
+        PanelVentas.setVisible(true);
         PanelVentas.setEnabled(true);
         CambiaEstadoPANEL(Actual);
         Actual=PanelVentas;
         //System.out.println(Actual);
+       }
     }//GEN-LAST:event_Boton_VentasActionPerformed
 
     private void Boton_InventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_InventarioActionPerformed
-       PanelInventario.setVisible(true);
+       if(Actual!=PanelInventario){
+        PanelInventario.setVisible(true);
         PanelInventario.setEnabled(true);
         CambiaEstadoPANEL(Actual);
         Actual=PanelInventario;
         //System.out.println(Actual);
+       }
     }//GEN-LAST:event_Boton_InventarioActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
