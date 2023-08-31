@@ -1,4 +1,5 @@
 
+import java.awt.BorderLayout;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -14,6 +15,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -233,10 +235,18 @@ public class Principal extends javax.swing.JFrame {
         //this.setTitle(" ");
         this.setLocationRelativeTo(null); //centrar ventana
         PanelEmpleados.setVisible(false);
+        PanelInventario.setVisible(false);
+        PanelVentas.setVisible(true);
         PanelEmpleados.setEnabled(false);
-        Actual=paneles[2];
+        PanelVentas.setEnabled(true);
+        PanelInventario.setEnabled(false);
+        Actual=PanelVentas;
     }
-
+    
+  public static void CambiaEstadoPANEL(JPanel p){
+      p.setVisible(!p.isVisible());
+      p.setEnabled(!p.isEnabled());
+  }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -246,10 +256,16 @@ public class Principal extends javax.swing.JFrame {
         Boton_Inventario = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        PanelVentas = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        TablaVENTAS = new javax.swing.JTable();
+        PanelInventario = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
         PanelEmpleados = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TablaEMPLEADOS = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -297,13 +313,91 @@ public class Principal extends javax.swing.JFrame {
         });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 630, 60, 53));
 
+        PanelVentas.setOpaque(false);
+        PanelVentas.setPreferredSize(new java.awt.Dimension(1240, 700));
+
+        jLabel4.setFont(new java.awt.Font("SWGothe", 0, 24)); // NOI18N
+        jLabel4.setText("|          Ventas");
+
+        TablaVENTAS.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(TablaVENTAS);
+
+        javax.swing.GroupLayout PanelVentasLayout = new javax.swing.GroupLayout(PanelVentas);
+        PanelVentas.setLayout(PanelVentasLayout);
+        PanelVentasLayout.setHorizontalGroup(
+            PanelVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelVentasLayout.createSequentialGroup()
+                .addGroup(PanelVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelVentasLayout.createSequentialGroup()
+                        .addGap(109, 109, 109)
+                        .addComponent(jLabel4))
+                    .addGroup(PanelVentasLayout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 1101, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(26, Short.MAX_VALUE))
+        );
+        PanelVentasLayout.setVerticalGroup(
+            PanelVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelVentasLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 197, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29))
+        );
+
+        getContentPane().add(PanelVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, 1160, 700));
+
+        PanelInventario.setOpaque(false);
+        PanelInventario.setPreferredSize(new java.awt.Dimension(1240, 700));
+
+        jLabel3.setFont(new java.awt.Font("SWGothe", 0, 24)); // NOI18N
+        jLabel3.setText("|      Inventario");
+
+        javax.swing.GroupLayout PanelInventarioLayout = new javax.swing.GroupLayout(PanelInventario);
+        PanelInventario.setLayout(PanelInventarioLayout);
+        PanelInventarioLayout.setHorizontalGroup(
+            PanelInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelInventarioLayout.createSequentialGroup()
+                .addGap(109, 109, 109)
+                .addComponent(jLabel3)
+                .addContainerGap(899, Short.MAX_VALUE))
+        );
+        PanelInventarioLayout.setVerticalGroup(
+            PanelInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelInventarioLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jLabel3)
+                .addContainerGap(653, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(PanelInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, 1160, 700));
+
         PanelEmpleados.setOpaque(false);
         PanelEmpleados.setPreferredSize(new java.awt.Dimension(1240, 700));
 
         jLabel1.setFont(new java.awt.Font("SWGothe", 0, 24)); // NOI18N
         jLabel1.setText("|      Empleados");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TablaEMPLEADOS.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -314,7 +408,7 @@ public class Principal extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(TablaEMPLEADOS);
 
         javax.swing.GroupLayout PanelEmpleadosLayout = new javax.swing.GroupLayout(PanelEmpleados);
         PanelEmpleados.setLayout(PanelEmpleadosLayout);
@@ -348,22 +442,31 @@ public class Principal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    String Actual;
-    String [] paneles={"Empleados","Ventas","Inventario"};
+    JPanel Actual;
+   
     private void Boton_EmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_EmpleadosActionPerformed
         PanelEmpleados.setVisible(true);
         PanelEmpleados.setEnabled(true);
-        Actual=paneles[0];
-        System.out.println(Actual);
+        CambiaEstadoPANEL(Actual);
+        Actual=PanelEmpleados;
+        //System.out.println(Actual);
         
     }//GEN-LAST:event_Boton_EmpleadosActionPerformed
 
     private void Boton_VentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_VentasActionPerformed
-        // TODO add your handling code here:
+       PanelVentas.setVisible(true);
+        PanelVentas.setEnabled(true);
+        CambiaEstadoPANEL(Actual);
+        Actual=PanelVentas;
+        //System.out.println(Actual);
     }//GEN-LAST:event_Boton_VentasActionPerformed
 
     private void Boton_InventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_InventarioActionPerformed
-        // TODO add your handling code here:
+       PanelInventario.setVisible(true);
+        PanelInventario.setEnabled(true);
+        CambiaEstadoPANEL(Actual);
+        Actual=PanelInventario;
+        //System.out.println(Actual);
     }//GEN-LAST:event_Boton_InventarioActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -409,11 +512,17 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton Boton_Inventario;
     private javax.swing.JButton Boton_Ventas;
     private javax.swing.JPanel PanelEmpleados;
+    private javax.swing.JPanel PanelInventario;
+    private javax.swing.JPanel PanelVentas;
+    private javax.swing.JTable TablaEMPLEADOS;
+    private javax.swing.JTable TablaVENTAS;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane jScrollPane3;
     // End of variables declaration//GEN-END:variables
 }
