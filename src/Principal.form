@@ -353,7 +353,7 @@
                     <Column editable="false" title="Cargo" type="java.lang.String"/>
                     <Column editable="false" title="Telf. Contacto" type="java.lang.String"/>
                     <Column editable="false" title="Fecha Ingreso" type="java.lang.String"/>
-                    <Column editable="false" title="Salacrio Mensual" type="java.lang.String"/>
+                    <Column editable="false" title="Salario Mensual" type="java.lang.String"/>
                     <Column editable="false" title="Salario+Comisiones" type="java.lang.String"/>
                     <Column editable="true" title="Seleccionado" type="java.lang.Boolean"/>
                   </Table>

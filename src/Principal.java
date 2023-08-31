@@ -546,7 +546,7 @@ public class Principal extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Nombre", "C.C.", "Cargo", "Telf. Contacto", "Fecha Ingreso", "Salacrio Mensual", "Salario+Comisiones", "Seleccionado"
+                "Nombre", "C.C.", "Cargo", "Telf. Contacto", "Fecha Ingreso", "Salario Mensual", "Salario+Comisiones", "Seleccionado"
             }
         ) {
             Class[] types = new Class [] {
