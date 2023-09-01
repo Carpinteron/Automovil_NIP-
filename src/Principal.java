@@ -426,6 +426,7 @@ public class Principal extends javax.swing.JFrame {
         PanelVentas.setEnabled(true);
         PanelInventario.setEnabled(false);
         Actual = PanelVentas;
+        TituloPanel.setText("|  Ventas");
         //ARCHIVO EMPLEADOS
         //Crear
         agregarDatosEmpleados("Empleados");
@@ -487,12 +488,14 @@ public class Principal extends javax.swing.JFrame {
         Boton_Inventario = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        TituloPanel = new javax.swing.JLabel();
         PanelVentas = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         TablaVENTAS = new javax.swing.JTable();
         PanelInventario = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
         PanelEmpleados = new javax.swing.JPanel();
         FrameAgregar = new javax.swing.JInternalFrame();
         PanelAgregarEmpleado = new javax.swing.JPanel();
@@ -528,9 +531,7 @@ public class Principal extends javax.swing.JFrame {
         BotonSinOrdenar = new javax.swing.JRadioButton();
         BotonparaAgregar = new javax.swing.JButton();
         BotonparaEliminar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         LabelFondoBorroso = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 204, 204));
@@ -566,7 +567,7 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().add(Boton_Inventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 53, 51));
 
         jButton1.setText("N");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 560, 53, 53));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 540, 53, 53));
 
         jButton2.setText("Info.");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -576,14 +577,31 @@ public class Principal extends javax.swing.JFrame {
         });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 630, 60, 53));
 
+        jLabel2.setBackground(new java.awt.Color(255, 204, 204));
+        jLabel2.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 36)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 204, 204));
+        jLabel2.setText("ARCHEY");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 140, -1));
+
+        jLabel14.setBackground(new java.awt.Color(51, 0, 0));
+        jLabel14.setOpaque(true);
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1240, 60));
+
+        jLabel13.setBackground(new java.awt.Color(51, 0, 0));
+        jLabel13.setOpaque(true);
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, 700));
+
+        TituloPanel.setFont(new java.awt.Font("Adobe Gothic Std B", 0, 48)); // NOI18N
+        TituloPanel.setForeground(new java.awt.Color(51, 0, 0));
+        TituloPanel.setText("|      Empleados");
+        TituloPanel.setAlignmentY(0.0F);
+        getContentPane().add(TituloPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, -1, -1));
+
         PanelVentas.setOpaque(false);
         PanelVentas.setPreferredSize(new java.awt.Dimension(1240, 700));
 
-        jLabel4.setFont(new java.awt.Font("SWGothe", 0, 24)); // NOI18N
-        jLabel4.setText("|          Ventas");
-
         TablaVENTAS.setBackground(new java.awt.Color(255, 204, 204));
-        TablaVENTAS.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        TablaVENTAS.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         TablaVENTAS.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -610,7 +628,7 @@ public class Principal extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        TablaVENTAS.setColumnSelectionAllowed(true);
+        TablaVENTAS.setCellSelectionEnabled(false);
         TablaVENTAS.setDoubleBuffered(true);
         TablaVENTAS.setGridColor(new java.awt.Color(102, 0, 0));
         TablaVENTAS.setRequestFocusEnabled(false);
@@ -628,54 +646,37 @@ public class Principal extends javax.swing.JFrame {
         PanelVentasLayout.setHorizontalGroup(
             PanelVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelVentasLayout.createSequentialGroup()
-                .addGroup(PanelVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelVentasLayout.createSequentialGroup()
-                        .addGap(109, 109, 109)
-                        .addComponent(jLabel4))
-                    .addGroup(PanelVentasLayout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 1101, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(106, Short.MAX_VALUE))
+                .addGap(33, 33, 33)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 1101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         PanelVentasLayout.setVerticalGroup(
             PanelVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelVentasLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 194, Short.MAX_VALUE)
+                .addContainerGap(184, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
         );
 
-        getContentPane().add(PanelVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, 1160, 700));
+        getContentPane().add(PanelVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 1160, 640));
 
         PanelInventario.setOpaque(false);
         PanelInventario.setPreferredSize(new java.awt.Dimension(1240, 700));
-
-        jLabel3.setFont(new java.awt.Font("SWGothe", 0, 24)); // NOI18N
-        jLabel3.setText("|      Inventario");
 
         javax.swing.GroupLayout PanelInventarioLayout = new javax.swing.GroupLayout(PanelInventario);
         PanelInventario.setLayout(PanelInventarioLayout);
         PanelInventarioLayout.setHorizontalGroup(
             PanelInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelInventarioLayout.createSequentialGroup()
-                .addGap(109, 109, 109)
-                .addComponent(jLabel3)
-                .addContainerGap(979, Short.MAX_VALUE))
+            .addGap(0, 1160, Short.MAX_VALUE)
         );
         PanelInventarioLayout.setVerticalGroup(
             PanelInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelInventarioLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabel3)
-                .addContainerGap(653, Short.MAX_VALUE))
+            .addGap(0, 640, Short.MAX_VALUE)
         );
 
-        getContentPane().add(PanelInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, 1160, 700));
+        getContentPane().add(PanelInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 1160, 640));
 
-        PanelEmpleados.setBackground(new java.awt.Color(239, 239, 239));
-        PanelEmpleados.setOpaque(false);
+        PanelEmpleados.setBackground(new java.awt.Color(255, 255, 255));
         PanelEmpleados.setPreferredSize(new java.awt.Dimension(1240, 700));
         PanelEmpleados.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -799,9 +800,9 @@ public class Principal extends javax.swing.JFrame {
         PanelEmpleados.add(FrameAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 110, 680, -1));
 
         TablaEMPLEADOS.setBackground(new java.awt.Color(255, 204, 204));
-        TablaEMPLEADOS.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        TablaEMPLEADOS.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         TablaEMPLEADOS.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        TablaEMPLEADOS.setForeground(new java.awt.Color(255, 153, 51));
+        TablaEMPLEADOS.setForeground(new java.awt.Color(0, 0, 0));
         TablaEMPLEADOS.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null}
@@ -826,13 +827,14 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         TablaEMPLEADOS.setColumnSelectionAllowed(true);
-        TablaEMPLEADOS.setGridColor(new java.awt.Color(102, 0, 0));
+        TablaEMPLEADOS.setGridColor(new java.awt.Color(255, 255, 255));
         TablaEMPLEADOS.setRowHeight(40);
         TablaEMPLEADOS.setSelectionBackground(new java.awt.Color(255, 153, 153));
         TablaEMPLEADOS.setSelectionForeground(new java.awt.Color(102, 0, 0));
         TablaEMPLEADOS.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         TablaEMPLEADOS.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-        TablaEMPLEADOS.setShowGrid(true);
+        TablaEMPLEADOS.setShowGrid(false);
+        TablaEMPLEADOS.setShowVerticalLines(true);
         jScrollPane1.setViewportView(TablaEMPLEADOS);
         TablaEMPLEADOS.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
@@ -873,18 +875,10 @@ public class Principal extends javax.swing.JFrame {
         });
         PanelEmpleados.add(BotonparaEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 210, 140, -1));
 
-        jLabel1.setFont(new java.awt.Font("SWGothe", 0, 24)); // NOI18N
-        jLabel1.setText("|      Empleados");
-        PanelEmpleados.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(109, 15, -1, -1));
-
         LabelFondoBorroso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/desenfocadobeta.png"))); // NOI18N
         PanelEmpleados.add(LabelFondoBorroso, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 1340, 590));
 
-        getContentPane().add(PanelEmpleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, 1160, 700));
-
-        jLabel2.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 36)); // NOI18N
-        jLabel2.setText("ARCHEY");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 140, -1));
+        getContentPane().add(PanelEmpleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 1160, 640));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -896,8 +890,8 @@ public class Principal extends javax.swing.JFrame {
             PanelEmpleados.setVisible(true);
             PanelEmpleados.setEnabled(true);
             CambiaEstadoPANEL(Actual);
-            Actual
-                    = PanelEmpleados; //System.out.println(Actual); } *
+            Actual= PanelEmpleados; //System.out.println(Actual); } *
+            TituloPanel.setText("|  Empleados");
         }
         /**
          * *
@@ -914,6 +908,7 @@ public class Principal extends javax.swing.JFrame {
             PanelVentas.setEnabled(true);
             CambiaEstadoPANEL(Actual);
             Actual = PanelVentas;
+            TituloPanel.setText("|  Ventas");
             //System.out.println(Actual);
         }
     }//GEN-LAST:event_Boton_VentasActionPerformed
@@ -924,6 +919,7 @@ public class Principal extends javax.swing.JFrame {
             PanelInventario.setEnabled(true);
             CambiaEstadoPANEL(Actual);
             Actual = PanelInventario;
+            TituloPanel.setText("|  Inventario");
             //System.out.println(Actual);
         }
     }//GEN-LAST:event_Boton_InventarioActionPerformed
@@ -1054,6 +1050,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel PanelVentas;
     private javax.swing.JTable TablaEMPLEADOS;
     private javax.swing.JTable TablaVENTAS;
+    private javax.swing.JLabel TituloPanel;
     private javax.swing.JButton cerrar;
     private javax.swing.JLabel error1;
     private javax.swing.JLabel error2;
@@ -1071,13 +1068,12 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField ftelefono;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
