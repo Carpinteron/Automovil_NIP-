@@ -597,7 +597,7 @@ public class Principal extends javax.swing.JFrame {
         TituloPanel.setAlignmentY(0.0F);
         getContentPane().add(TituloPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, -1, -1));
 
-        PanelVentas.setOpaque(false);
+        PanelVentas.setBackground(new java.awt.Color(255, 255, 255));
         PanelVentas.setPreferredSize(new java.awt.Dimension(1240, 700));
 
         TablaVENTAS.setBackground(new java.awt.Color(255, 204, 204));
@@ -660,7 +660,7 @@ public class Principal extends javax.swing.JFrame {
 
         getContentPane().add(PanelVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 1160, 640));
 
-        PanelInventario.setOpaque(false);
+        PanelInventario.setBackground(new java.awt.Color(255, 255, 255));
         PanelInventario.setPreferredSize(new java.awt.Dimension(1240, 700));
 
         javax.swing.GroupLayout PanelInventarioLayout = new javax.swing.GroupLayout(PanelInventario);
