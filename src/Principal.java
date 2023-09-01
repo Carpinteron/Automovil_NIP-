@@ -1,5 +1,7 @@
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -15,6 +17,7 @@ import java.util.Scanner;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -152,19 +155,20 @@ public class Principal extends javax.swing.JFrame {
                         }
                     }
                 } else {
-                    /**ESTO ES INTERESANTE ES ALGO PROPIO DE LA TABLA
+                    /**
+                     * ESTO ES INTERESANTE ES ALGO PROPIO DE LA TABLA
                      * TableRowSorter<DefaultTableModel> sorter = new
                      * TableRowSorter<>(model); tabla.setRowSorter(sorter);
                      *
-                     * // Ordenar por la columna de salario de mayor a menor int
-                     * salarioColumna = 6; sorter.setComparator(salarioColumna,
-                     * new Comparator<String>() {
+                     * // Ordenar por la columna de salario de mayor a menor
+                     * int salarioColumna = 6;
+                     * sorter.setComparator(salarioColumna, new
+                     * Comparator<String>() {
                      *
                      * @Override public int compare(String o1, String o2) {
                      * double salario1 = Double.parseDouble(o1); double salario2
                      * = Double.parseDouble(o2); return Double.compare(salario2,
-                     * salario1); } });
-                    * *
+                     * salario1); } }); *
                      */
                     //Ordenamiento Burbuja
                     int salarioColumna = 6;
@@ -196,22 +200,6 @@ public class Principal extends javax.swing.JFrame {
                 hay = false;
                 file_name = sc.nextLine(); // Archivo
             }
-        }
-    }
-
-    //04 HOLA SE ME OLVIDO COMO USAR BOTTON GROUP 
-    public void Verificar() {
-        //ordenar por salario o nombre
-        Scanner sc = new Scanner(System.in);
-        if (BotonOrdenar.isSelected()) {
-            LeerOrdenado(sc, "Empleados", TablaEMPLEADOS, "Nombre");
-            sc.close();
-        } else if (BotonOrdenarSalario.isSelected()) {
-            LeerOrdenado(sc, "Empleados", TablaEMPLEADOS, "Salario");
-            sc.close();
-        } else {
-            LeerNormal(sc, "Empleados", TablaEMPLEADOS);
-            sc.close();
         }
     }
 
@@ -355,6 +343,34 @@ public class Principal extends javax.swing.JFrame {
         Scanner sc = new Scanner(System.in);
         LeerNormal(sc, "Empleados", TablaEMPLEADOS);
         sc.close();
+        //Opcion de Ordenar por Salario o Nombre
+        //ordenar por salario o nombre
+        ButtonGroup buttonGroup = new ButtonGroup();
+        // Agregar los radio buttons al grupo
+        buttonGroup.add(BotonOrdenar);
+        buttonGroup.add(BotonOrdenarSalario);
+        buttonGroup.add(BotonSinOrdenar);
+        BotonOrdenar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                LeerOrdenado(sc, "Empleados", TablaEMPLEADOS, "Nombre");
+                sc.close();
+            }
+        });
+        BotonOrdenarSalario.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                LeerOrdenado(sc, "Empleados", TablaEMPLEADOS, "Salario");
+                sc.close();
+            }
+        });
+        BotonSinOrdenar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                LeerNormal(sc, "Empleados", TablaEMPLEADOS);
+                sc.close();
+            }
+        });
 
     }
 
@@ -384,6 +400,7 @@ public class Principal extends javax.swing.JFrame {
         TablaEMPLEADOS = new javax.swing.JTable();
         BotonOrdenar = new javax.swing.JRadioButton();
         BotonOrdenarSalario = new javax.swing.JRadioButton();
+        BotonSinOrdenar = new javax.swing.JRadioButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -583,7 +600,7 @@ public class Principal extends javax.swing.JFrame {
                 BotonOrdenarActionPerformed(evt);
             }
         });
-        PanelEmpleados.add(BotonOrdenar, new org.netbeans.lib.awtextra.AbsoluteConstraints(992, 189, -1, -1));
+        PanelEmpleados.add(BotonOrdenar, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 180, -1, -1));
 
         BotonOrdenarSalario.setText("Ordenar por Salario");
         BotonOrdenarSalario.addActionListener(new java.awt.event.ActionListener() {
@@ -591,7 +608,10 @@ public class Principal extends javax.swing.JFrame {
                 BotonOrdenarSalarioActionPerformed(evt);
             }
         });
-        PanelEmpleados.add(BotonOrdenarSalario, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 210, -1, -1));
+        PanelEmpleados.add(BotonOrdenarSalario, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 200, -1, -1));
+
+        BotonSinOrdenar.setText("Sin ordenar");
+        PanelEmpleados.add(BotonSinOrdenar, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 220, -1, -1));
 
         getContentPane().add(PanelEmpleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, 1160, 700));
 
@@ -646,11 +666,11 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void BotonOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonOrdenarActionPerformed
-        Verificar();
+
     }//GEN-LAST:event_BotonOrdenarActionPerformed
 
     private void BotonOrdenarSalarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonOrdenarSalarioActionPerformed
-        Verificar();
+
     }//GEN-LAST:event_BotonOrdenarSalarioActionPerformed
 
     public static void main(String args[]) {
@@ -689,6 +709,7 @@ public class Principal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton BotonOrdenar;
     private javax.swing.JRadioButton BotonOrdenarSalario;
+    private javax.swing.JRadioButton BotonSinOrdenar;
     private javax.swing.JButton Boton_Empleados;
     private javax.swing.JButton Boton_Inventario;
     private javax.swing.JButton Boton_Ventas;
