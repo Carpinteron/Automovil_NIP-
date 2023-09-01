@@ -15,6 +15,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -238,8 +239,13 @@ public class Principal extends javax.swing.JFrame {
         }
 
     }
+    
+    //05 Subrutina para eliminar registros
+    public void EliminarRegistro(){
+        
+    }
 
-    //05 Subrutina para limpiar campos
+    //06 Subrutina para limpiar campos
     public void Limpiar() {
         fnombre.setText("");
         fcedula.setText("");
@@ -488,6 +494,14 @@ public class Principal extends javax.swing.JFrame {
         PanelInventario = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         PanelEmpleados = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TablaEMPLEADOS = new javax.swing.JTable();
+        BotonOrdenar = new javax.swing.JRadioButton();
+        BotonOrdenarSalario = new javax.swing.JRadioButton();
+        BotonSinOrdenar = new javax.swing.JRadioButton();
+        BotonparaAgregar = new javax.swing.JButton();
+        BotonparaEliminar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         FrameAgregar = new javax.swing.JInternalFrame();
         PanelAgregarEmpleado = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -504,7 +518,7 @@ public class Principal extends javax.swing.JFrame {
         ftelefono = new javax.swing.JTextField();
         fsalariofijo = new javax.swing.JTextField();
         fsalariocomisiones = new javax.swing.JTextField();
-        jButton5 = new javax.swing.JButton();
+        cerrar = new javax.swing.JButton();
         BotonAgregarEmpleados = new javax.swing.JButton();
         BotonLimpiar = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
@@ -516,14 +530,6 @@ public class Principal extends javax.swing.JFrame {
         error5 = new javax.swing.JLabel();
         error6 = new javax.swing.JLabel();
         LabelFondoBorroso = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        TablaEMPLEADOS = new javax.swing.JTable();
-        BotonOrdenar = new javax.swing.JRadioButton();
-        BotonOrdenarSalario = new javax.swing.JRadioButton();
-        BotonSinOrdenar = new javax.swing.JRadioButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -673,6 +679,85 @@ public class Principal extends javax.swing.JFrame {
         PanelEmpleados.setPreferredSize(new java.awt.Dimension(1240, 700));
         PanelEmpleados.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        TablaEMPLEADOS.setBackground(new java.awt.Color(255, 204, 204));
+        TablaEMPLEADOS.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        TablaEMPLEADOS.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        TablaEMPLEADOS.setForeground(new java.awt.Color(255, 153, 51));
+        TablaEMPLEADOS.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Nombre", "C.C.", "Cargo", "Telf. Contacto", "Fecha Ingreso", "Salario Mensual", "Salario+Comisiones"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        TablaEMPLEADOS.setColumnSelectionAllowed(true);
+        TablaEMPLEADOS.setGridColor(new java.awt.Color(102, 0, 0));
+        TablaEMPLEADOS.setRowHeight(40);
+        TablaEMPLEADOS.setSelectionBackground(new java.awt.Color(255, 153, 153));
+        TablaEMPLEADOS.setSelectionForeground(new java.awt.Color(102, 0, 0));
+        TablaEMPLEADOS.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        TablaEMPLEADOS.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        TablaEMPLEADOS.setShowGrid(true);
+        jScrollPane1.setViewportView(TablaEMPLEADOS);
+        TablaEMPLEADOS.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+
+        PanelEmpleados.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 244, 1101, -1));
+
+        BotonOrdenar.setText("Ordenar por nombre");
+        BotonOrdenar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonOrdenarActionPerformed(evt);
+            }
+        });
+        PanelEmpleados.add(BotonOrdenar, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 180, -1, -1));
+
+        BotonOrdenarSalario.setText("Ordenar por Salario");
+        BotonOrdenarSalario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonOrdenarSalarioActionPerformed(evt);
+            }
+        });
+        PanelEmpleados.add(BotonOrdenarSalario, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 200, -1, -1));
+
+        BotonSinOrdenar.setText("Sin ordenar");
+        PanelEmpleados.add(BotonSinOrdenar, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 220, -1, -1));
+
+        BotonparaAgregar.setText("+ (Agregar nuevo registro)");
+        BotonparaAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonparaAgregarActionPerformed(evt);
+            }
+        });
+        PanelEmpleados.add(BotonparaAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 210, -1, -1));
+
+        BotonparaEliminar.setText("- (Eliminar registro)");
+        BotonparaEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonparaEliminarActionPerformed(evt);
+            }
+        });
+        PanelEmpleados.add(BotonparaEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 210, 140, -1));
+
+        jLabel1.setFont(new java.awt.Font("SWGothe", 0, 24)); // NOI18N
+        jLabel1.setText("|      Empleados");
+        PanelEmpleados.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(109, 15, -1, -1));
+
         FrameAgregar.setVisible(true);
 
         PanelAgregarEmpleado.setBackground(new java.awt.Color(255, 255, 255));
@@ -712,13 +797,13 @@ public class Principal extends javax.swing.JFrame {
         PanelAgregarEmpleado.add(fsalariofijo, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 295, 280, -1));
         PanelAgregarEmpleado.add(fsalariocomisiones, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 335, 280, -1));
 
-        jButton5.setText("Cerrar");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        cerrar.setText("Cerrar");
+        cerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                cerrarActionPerformed(evt);
             }
         });
-        PanelAgregarEmpleado.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 10, -1, -1));
+        PanelAgregarEmpleado.add(cerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 10, -1, -1));
 
         BotonAgregarEmpleados.setText("Agregar");
         BotonAgregarEmpleados.addActionListener(new java.awt.event.ActionListener() {
@@ -795,80 +880,6 @@ public class Principal extends javax.swing.JFrame {
         LabelFondoBorroso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/desenfocadobeta.png"))); // NOI18N
         PanelEmpleados.add(LabelFondoBorroso, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 1340, 590));
 
-        TablaEMPLEADOS.setBackground(new java.awt.Color(255, 204, 204));
-        TablaEMPLEADOS.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        TablaEMPLEADOS.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        TablaEMPLEADOS.setForeground(new java.awt.Color(255, 153, 51));
-        TablaEMPLEADOS.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Nombre", "C.C.", "Cargo", "Telf. Contacto", "Fecha Ingreso", "Salario Mensual", "Salario+Comisiones", "Seleccionado"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, true
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        TablaEMPLEADOS.setColumnSelectionAllowed(true);
-        TablaEMPLEADOS.setGridColor(new java.awt.Color(102, 0, 0));
-        TablaEMPLEADOS.setRowHeight(40);
-        TablaEMPLEADOS.setSelectionBackground(new java.awt.Color(255, 153, 153));
-        TablaEMPLEADOS.setSelectionForeground(new java.awt.Color(102, 0, 0));
-        TablaEMPLEADOS.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-        TablaEMPLEADOS.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-        TablaEMPLEADOS.setShowGrid(true);
-        jScrollPane1.setViewportView(TablaEMPLEADOS);
-        TablaEMPLEADOS.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-
-        PanelEmpleados.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 244, 1101, -1));
-
-        BotonOrdenar.setText("Ordenar por nombre");
-        BotonOrdenar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonOrdenarActionPerformed(evt);
-            }
-        });
-        PanelEmpleados.add(BotonOrdenar, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 180, -1, -1));
-
-        BotonOrdenarSalario.setText("Ordenar por Salario");
-        BotonOrdenarSalario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonOrdenarSalarioActionPerformed(evt);
-            }
-        });
-        PanelEmpleados.add(BotonOrdenarSalario, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 200, -1, -1));
-
-        BotonSinOrdenar.setText("Sin ordenar");
-        PanelEmpleados.add(BotonSinOrdenar, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 220, -1, -1));
-
-        jButton3.setText("+ (Agregar nuevo registro)");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        PanelEmpleados.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 210, -1, -1));
-
-        jButton4.setText("- (Eliminar registro)");
-        PanelEmpleados.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 210, 140, -1));
-
-        jLabel1.setFont(new java.awt.Font("SWGothe", 0, 24)); // NOI18N
-        jLabel1.setText("|      Empleados");
-        PanelEmpleados.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(109, 15, -1, -1));
-
         getContentPane().add(PanelEmpleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, 1160, 700));
 
         jLabel2.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 36)); // NOI18N
@@ -929,23 +940,33 @@ public class Principal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_BotonOrdenarSalarioActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void BotonparaAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonparaAgregarActionPerformed
         FrameAgregar.setVisible(true);
         TablaEMPLEADOS.setVisible(false);
         jScrollPane1.setVisible(false);
         LabelFondoBorroso.setVisible(true);
+        BotonparaAgregar.setVisible(false);
+        BotonparaEliminar.setVisible(false);
+        BotonOrdenar.setVisible(false);
+        BotonOrdenarSalario.setVisible(false);
+        BotonSinOrdenar.setVisible(false);
 
 
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_BotonparaAgregarActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed
         LabelFondoBorroso.setVisible(false);
         jScrollPane1.setVisible(true);
         TablaEMPLEADOS.setVisible(true);
         FrameAgregar.setVisible(false);
         LabelFondoBorroso.setVisible(false);
+        BotonparaAgregar.setVisible(true);
+        BotonparaEliminar.setVisible(true);
+        BotonOrdenar.setVisible(true);
+        BotonOrdenarSalario.setVisible(true);
+        BotonSinOrdenar.setVisible(true);
         Limpiar();
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_cerrarActionPerformed
 
     private void fnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fnombreActionPerformed
         // TODO add your handling code here:
@@ -961,6 +982,14 @@ public class Principal extends javax.swing.JFrame {
     private void BotonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonLimpiarActionPerformed
         Limpiar();        Limpiar();    }//GEN-LAST:event_BotonLimpiarActionPerformed
 
+    private void BotonparaEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonparaEliminarActionPerformed
+        
+    
+
+   
+    
+    }//GEN-LAST:event_BotonparaEliminarActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -972,16 +1001,28 @@ public class Principal extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                }
+
+}
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Inicio.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+} catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Inicio.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+} catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Inicio.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Inicio.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -1003,6 +1044,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton Boton_Empleados;
     private javax.swing.JButton Boton_Inventario;
     private javax.swing.JButton Boton_Ventas;
+    private javax.swing.JButton BotonparaAgregar;
+    private javax.swing.JButton BotonparaEliminar;
     private javax.swing.JInternalFrame FrameAgregar;
     private javax.swing.JLabel LabelFondoBorroso;
     private javax.swing.JPanel PanelAgregarEmpleado;
@@ -1011,6 +1054,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel PanelVentas;
     private javax.swing.JTable TablaEMPLEADOS;
     private javax.swing.JTable TablaVENTAS;
+    private javax.swing.JButton cerrar;
     private javax.swing.JLabel error1;
     private javax.swing.JLabel error2;
     private javax.swing.JLabel error3;
@@ -1027,9 +1071,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField ftelefono;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
