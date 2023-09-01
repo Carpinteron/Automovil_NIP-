@@ -1,5 +1,4 @@
 
-import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -8,24 +7,17 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
-import java.text.DecimalFormat;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.Comparator;
 import java.util.Scanner;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.swing.ButtonGroup;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
-import javax.swing.SwingConstants;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -203,8 +195,8 @@ public class Principal extends javax.swing.JFrame {
         }
     }
 
-    //04 Subrutina para Agregar Datos (si quieren se puede hacer así)
-    public void LlenarNuevosIngresos(String file_name) {
+    //04 Subrutina para Agregar Datos de Empleados(si quieren se puede hacer así)
+    public void AgregarEmpleados(String file_name) {
         /**
          * (Nombre, cédula, cargo, teléfono de contacto, fecha de ingreso,
          * salario fijo mensual y salario más comisiones *
@@ -217,11 +209,26 @@ public class Principal extends javax.swing.JFrame {
             // if true the registers will be appended to the end of the file
             PrintWriter registrar_empleados = new PrintWriter(outFile);
             // LOGICA
-            //AQUI OBTENER LAS CADENAS DE LOS JTEXTFIELD
+            Nombre = fnombre.getText();
+            Cedula = fcedula.getText();
+            Cargo = fcargo.getText();
+            Telefono = ftelefono.getText();
+            FechaIngreso = ffechaingreso.getText();
+            SalarioFijo = fsalariofijo.getText();
+            SalarioComisiones = fsalariocomisiones.getText();
 
             //Llamar a funciones de validaciones
             //Validacion1: verifica que no haya campos vacios
             //Validacion2: verifica que cada campo no tenga algun error de formato
+            if (validacion1(Nombre, Cedula, Cargo, Telefono, FechaIngreso, SalarioFijo, SalarioComisiones)) {
+                if (validacion2(Nombre, Cedula, Cargo, Telefono, FechaIngreso, SalarioFijo, SalarioComisiones)) {
+                    registrar_empleados.println(Nombre + "\t" + Cedula + "\t" + Cargo + "\t" + Telefono + "\t" + FechaIngreso + "\t" + SalarioFijo + "\t" + SalarioComisiones);
+                    sonido("/Sonidos/correcto.wav");//implementacion de sonidos
+                    JOptionPane.showMessageDialog(null, "Los datos se han agregado satisfactoriamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    sonido("/Sonidos/error.wav");
+                }
+            }
             registrar_empleados.close();
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error al agregar los datos.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -230,6 +237,17 @@ public class Principal extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
+    }
+
+    //05 Subrutina para limpiar campos
+    public void Limpiar() {
+        fnombre.setText("");
+        fcedula.setText("");
+        fcargo.setText("");
+        ftelefono.setText("");
+        ffechaingreso.setText("");
+        fsalariofijo.setText("");
+        fsalariocomisiones.setText("");
     }
 
     //06 SUBRUTINA PARA APLICAR SONIDO
@@ -258,6 +276,7 @@ public class Principal extends javax.swing.JFrame {
     }
 
     //02 Funcion para validar 2
+    // Nombre, Cedula, Cargo, Telefono, FechaIngreso, SalarioFijo, SalarioComisiones
     public boolean validacion2(String c1, String c2, String c3, String c4, String c5, String c6, String c7) {
 
         // Validacion Nombre
@@ -269,10 +288,10 @@ public class Principal extends javax.swing.JFrame {
             }
         }
         if (!validon) {
-            //error1.setVisible(true); (label que muestra error)
+            error1.setVisible(true);
             return false;
         } else {
-            //error1.setVisible(false);
+            error1.setVisible(false);
         }
 
         //Validacion Cedula
@@ -284,41 +303,106 @@ public class Principal extends javax.swing.JFrame {
             }
         }
         if (!validoc) {
-            //error2.setVisible(true); // Mostrar mensaje de error
+            error2.setVisible(true); // Mostrar mensaje de error
             return false;
         } else {
-            //error2.setVisible(false); // Ocultar mensaje de error
+            error2.setVisible(false); // Ocultar mensaje de error
         }
 
-        //Validacion fecha de ingreso
-        try {
-            LocalDate fecha = LocalDate.parse(c3); // Intenta analizar la cadena como una fecha
-            //error3.setVisible(true);
+        // Validacion Cargo
+        boolean validocargo = true;
+        for (char c : c3.toCharArray()) {
+            if (!Character.isLetter(c) && !Character.isSpaceChar(c)) {
+                validocargo = false;
+                break;
+            }
+        }
+        if (!validocargo) {
+            error3.setVisible(true);
             return false;
-        } catch (DateTimeParseException e) {
-            //error3.setVisible(false);
+        } else {
+            error3.setVisible(false);
         }
-
         //Validacion telefono de contacto
         // Verificar si la entrada consiste en números y tiene 10 dígitos
         boolean validonumero = true;
-        for (char c : c5.toCharArray()) {
+        for (char c : c4.toCharArray()) {
             if (!Character.isDigit(c)) {
                 validonumero = false;
                 break;
             }
         }
 
-        boolean tiene10Digitos = c5.length() == 10;
+        boolean tiene10Digitos = c4.length() == 10;
 
         if (validonumero && tiene10Digitos) {
-            // error5.setVisible(false);
+            error4.setVisible(false);
         } else {
-            //error5.setVisible(true);
+            error4.setVisible(true);
             return false;
         }
 
-        // Validacion salario 
+        // Validación salario
+        boolean validosalario = true;
+        for (char c : c6.toCharArray()) {
+            if (!Character.isDigit(c)) {
+                validosalario = false;
+                break;
+            }
+        }
+
+        try {
+            double salariofijo = Double.parseDouble(c6);
+            if (salariofijo < 0) {
+                error6.setVisible(false);
+            }
+        } catch (NumberFormatException e) {
+            error6.setVisible(true); // Mostrar mensaje de error
+            return false;
+        }
+
+        if (!validosalario) {
+            error6.setVisible(true); // Mostrar mensaje de error
+            return false;
+        } else {
+            error6.setVisible(false); // Ocultar mensaje de error  
+
+        }
+
+        // Validacion salario+Comisiones
+        boolean validosalario2 = true;
+        for (char c : c7.toCharArray()) {
+            if (!Character.isDigit(c)) {
+                validosalario2 = false;
+                break;
+            }
+        }
+
+        try {
+            double salariofijo = Double.parseDouble(c7);
+            if (salariofijo < 0) {
+                error7.setVisible(false);
+            }
+        } catch (NumberFormatException e) {
+            error7.setVisible(true); // Mostrar mensaje de error
+            return false;
+        }
+
+        if (!validosalario2) {
+            error7.setVisible(true); // Mostrar mensaje de error
+            return false;
+        } else {
+            error7.setVisible(false); // Ocultar mensaje de error  
+
+        }
+        //Validacion fecha de ingreso
+        try {
+            LocalDate fecha = LocalDate.parse(c5); // Intenta analizar la cadena como una fecha
+            error5.setVisible(true);
+            return false;
+        } catch (DateTimeParseException e) {
+            error5.setVisible(false);
+        }
         return true;
 
     }
@@ -344,7 +428,6 @@ public class Principal extends javax.swing.JFrame {
         LeerNormal(sc, "Empleados", TablaEMPLEADOS);
         sc.close();
         //Opcion de Ordenar por Salario o Nombre
-        //ordenar por salario o nombre
         ButtonGroup buttonGroup = new ButtonGroup();
         // Agregar los radio buttons al grupo
         buttonGroup.add(BotonOrdenar);
@@ -371,6 +454,16 @@ public class Principal extends javax.swing.JFrame {
                 sc.close();
             }
         });
+        //No visible
+        FrameAgregar.setVisible(false);
+        LabelFondoBorroso.setVisible(false);
+        error1.setVisible(false);
+        error2.setVisible(false);
+        error3.setVisible(false);
+        error4.setVisible(false);
+        error5.setVisible(false);
+        error6.setVisible(false);
+        error7.setVisible(false);
 
     }
 
@@ -395,12 +488,42 @@ public class Principal extends javax.swing.JFrame {
         PanelInventario = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         PanelEmpleados = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        FrameAgregar = new javax.swing.JInternalFrame();
+        PanelAgregarEmpleado = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        fnombre = new javax.swing.JTextField();
+        fcedula = new javax.swing.JTextField();
+        fcargo = new javax.swing.JTextField();
+        ffechaingreso = new javax.swing.JTextField();
+        ftelefono = new javax.swing.JTextField();
+        fsalariofijo = new javax.swing.JTextField();
+        fsalariocomisiones = new javax.swing.JTextField();
+        jButton5 = new javax.swing.JButton();
+        BotonAgregarEmpleados = new javax.swing.JButton();
+        BotonLimpiar = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        error7 = new javax.swing.JLabel();
+        error1 = new javax.swing.JLabel();
+        error2 = new javax.swing.JLabel();
+        error3 = new javax.swing.JLabel();
+        error4 = new javax.swing.JLabel();
+        error5 = new javax.swing.JLabel();
+        error6 = new javax.swing.JLabel();
+        LabelFondoBorroso = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaEMPLEADOS = new javax.swing.JTable();
         BotonOrdenar = new javax.swing.JRadioButton();
         BotonOrdenarSalario = new javax.swing.JRadioButton();
         BotonSinOrdenar = new javax.swing.JRadioButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -513,7 +636,7 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(PanelVentasLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 200, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 194, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
         );
@@ -550,9 +673,127 @@ public class Principal extends javax.swing.JFrame {
         PanelEmpleados.setPreferredSize(new java.awt.Dimension(1240, 700));
         PanelEmpleados.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("SWGothe", 0, 24)); // NOI18N
-        jLabel1.setText("|      Empleados");
-        PanelEmpleados.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(109, 15, -1, -1));
+        FrameAgregar.setVisible(true);
+
+        PanelAgregarEmpleado.setBackground(new java.awt.Color(255, 255, 255));
+        PanelAgregarEmpleado.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel5.setText("Nombre:");
+        PanelAgregarEmpleado.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 89, -1, -1));
+
+        jLabel6.setText("Cédula:");
+        PanelAgregarEmpleado.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 135, -1, -1));
+
+        jLabel7.setText("Cargo:");
+        PanelAgregarEmpleado.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 175, -1, -1));
+
+        jLabel8.setText("Teléfono:");
+        PanelAgregarEmpleado.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 215, -1, -1));
+
+        jLabel9.setText("Fecha de Ingreso:");
+        PanelAgregarEmpleado.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 258, -1, -1));
+
+        jLabel10.setText("Salario Fijo Mensual:");
+        PanelAgregarEmpleado.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 298, -1, -1));
+
+        jLabel11.setText("Salario+Comisiones:");
+        PanelAgregarEmpleado.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 335, -1, 22));
+
+        fnombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fnombreActionPerformed(evt);
+            }
+        });
+        PanelAgregarEmpleado.add(fnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(164, 86, 280, -1));
+        PanelAgregarEmpleado.add(fcedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(164, 132, 280, -1));
+        PanelAgregarEmpleado.add(fcargo, new org.netbeans.lib.awtextra.AbsoluteConstraints(164, 172, 280, -1));
+        PanelAgregarEmpleado.add(ffechaingreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(164, 255, 280, -1));
+        PanelAgregarEmpleado.add(ftelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(164, 212, 280, -1));
+        PanelAgregarEmpleado.add(fsalariofijo, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 295, 280, -1));
+        PanelAgregarEmpleado.add(fsalariocomisiones, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 335, 280, -1));
+
+        jButton5.setText("Cerrar");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        PanelAgregarEmpleado.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 10, -1, -1));
+
+        BotonAgregarEmpleados.setText("Agregar");
+        BotonAgregarEmpleados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonAgregarEmpleadosActionPerformed(evt);
+            }
+        });
+        PanelAgregarEmpleado.add(BotonAgregarEmpleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(456, 404, -1, -1));
+
+        BotonLimpiar.setText("Limpiar");
+        BotonLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonLimpiarActionPerformed(evt);
+            }
+        });
+        PanelAgregarEmpleado.add(BotonLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(534, 404, -1, -1));
+
+        jLabel12.setText("Poner Imagen de Empleado");
+        PanelAgregarEmpleado.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 90, 170, 210));
+
+        error7.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        error7.setForeground(new java.awt.Color(255, 0, 0));
+        error7.setText("(!) Salario debe contener solo numeros mayores a cero");
+        PanelAgregarEmpleado.add(error7, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 360, 290, -1));
+
+        error1.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        error1.setForeground(new java.awt.Color(255, 0, 0));
+        error1.setText("(!) El nombre no debe contener números ni caracteres especiales.");
+        PanelAgregarEmpleado.add(error1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, 290, -1));
+
+        error2.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        error2.setForeground(new java.awt.Color(255, 0, 0));
+        error2.setText("(!) La cédula debe contener solo números.");
+        PanelAgregarEmpleado.add(error2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 158, 290, 10));
+
+        error3.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        error3.setForeground(new java.awt.Color(255, 0, 0));
+        error3.setText("(!) Este campo no debe contener números ni caracteres especiales.");
+        PanelAgregarEmpleado.add(error3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 194, 300, -1));
+
+        error4.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        error4.setForeground(new java.awt.Color(255, 0, 0));
+        error4.setText("(!) El telefono solo debe contener 10 digitos numéricos.");
+        PanelAgregarEmpleado.add(error4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, 290, 20));
+
+        error5.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        error5.setForeground(new java.awt.Color(255, 0, 0));
+        error5.setText("(!) Formato de fecha no válido. Recuerde (DD/MM/AA)");
+        PanelAgregarEmpleado.add(error5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, 290, 10));
+
+        error6.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        error6.setForeground(new java.awt.Color(255, 0, 0));
+        error6.setText("(!) Salario debe contener solo numeros mayores a cero");
+        PanelAgregarEmpleado.add(error6, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 320, 290, 10));
+
+        javax.swing.GroupLayout FrameAgregarLayout = new javax.swing.GroupLayout(FrameAgregar.getContentPane());
+        FrameAgregar.getContentPane().setLayout(FrameAgregarLayout);
+        FrameAgregarLayout.setHorizontalGroup(
+            FrameAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FrameAgregarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(PanelAgregarEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        FrameAgregarLayout.setVerticalGroup(
+            FrameAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FrameAgregarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(PanelAgregarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        PanelEmpleados.add(FrameAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 110, 680, -1));
+
+        LabelFondoBorroso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/desenfocadobeta.png"))); // NOI18N
+        PanelEmpleados.add(LabelFondoBorroso, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 1340, 590));
 
         TablaEMPLEADOS.setBackground(new java.awt.Color(255, 204, 204));
         TablaEMPLEADOS.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -612,6 +853,21 @@ public class Principal extends javax.swing.JFrame {
 
         BotonSinOrdenar.setText("Sin ordenar");
         PanelEmpleados.add(BotonSinOrdenar, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 220, -1, -1));
+
+        jButton3.setText("+ (Agregar nuevo registro)");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        PanelEmpleados.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 210, -1, -1));
+
+        jButton4.setText("- (Eliminar registro)");
+        PanelEmpleados.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 210, 140, -1));
+
+        jLabel1.setFont(new java.awt.Font("SWGothe", 0, 24)); // NOI18N
+        jLabel1.setText("|      Empleados");
+        PanelEmpleados.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(109, 15, -1, -1));
 
         getContentPane().add(PanelEmpleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, 1160, 700));
 
@@ -673,6 +929,38 @@ public class Principal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_BotonOrdenarSalarioActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        FrameAgregar.setVisible(true);
+        TablaEMPLEADOS.setVisible(false);
+        jScrollPane1.setVisible(false);
+        LabelFondoBorroso.setVisible(true);
+
+
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        LabelFondoBorroso.setVisible(false);
+        jScrollPane1.setVisible(true);
+        TablaEMPLEADOS.setVisible(true);
+        FrameAgregar.setVisible(false);
+        LabelFondoBorroso.setVisible(false);
+        Limpiar();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void fnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fnombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fnombreActionPerformed
+
+    private void BotonAgregarEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAgregarEmpleadosActionPerformed
+        AgregarEmpleados("Empleados");
+        Scanner sc = new Scanner(System.in);
+        LeerNormal(sc, "Empleados", TablaEMPLEADOS);
+        sc.close();
+    }//GEN-LAST:event_BotonAgregarEmpleadosActionPerformed
+
+    private void BotonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonLimpiarActionPerformed
+        Limpiar();        Limpiar();    }//GEN-LAST:event_BotonLimpiarActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -707,23 +995,53 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotonAgregarEmpleados;
+    private javax.swing.JButton BotonLimpiar;
     private javax.swing.JRadioButton BotonOrdenar;
     private javax.swing.JRadioButton BotonOrdenarSalario;
     private javax.swing.JRadioButton BotonSinOrdenar;
     private javax.swing.JButton Boton_Empleados;
     private javax.swing.JButton Boton_Inventario;
     private javax.swing.JButton Boton_Ventas;
+    private javax.swing.JInternalFrame FrameAgregar;
+    private javax.swing.JLabel LabelFondoBorroso;
+    private javax.swing.JPanel PanelAgregarEmpleado;
     private javax.swing.JPanel PanelEmpleados;
     private javax.swing.JPanel PanelInventario;
     private javax.swing.JPanel PanelVentas;
     private javax.swing.JTable TablaEMPLEADOS;
     private javax.swing.JTable TablaVENTAS;
+    private javax.swing.JLabel error1;
+    private javax.swing.JLabel error2;
+    private javax.swing.JLabel error3;
+    private javax.swing.JLabel error4;
+    private javax.swing.JLabel error5;
+    private javax.swing.JLabel error6;
+    private javax.swing.JLabel error7;
+    private javax.swing.JTextField fcargo;
+    private javax.swing.JTextField fcedula;
+    private javax.swing.JTextField ffechaingreso;
+    private javax.swing.JTextField fnombre;
+    private javax.swing.JTextField fsalariocomisiones;
+    private javax.swing.JTextField fsalariofijo;
+    private javax.swing.JTextField ftelefono;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     // End of variables declaration//GEN-END:variables
