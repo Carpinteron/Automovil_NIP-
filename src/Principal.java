@@ -492,10 +492,6 @@ public class Principal extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         TituloPanel = new javax.swing.JLabel();
-        PanelVentas = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        TablaVENTAS = new javax.swing.JTable();
-        PanelInventario = new javax.swing.JPanel();
         PanelEmpleados = new javax.swing.JPanel();
         FrameAgregar = new javax.swing.JInternalFrame();
         PanelAgregarEmpleado = new javax.swing.JPanel();
@@ -532,9 +528,13 @@ public class Principal extends javax.swing.JFrame {
         BotonparaAgregar = new javax.swing.JButton();
         BotonparaEliminar = new javax.swing.JButton();
         LabelFondoBorroso = new javax.swing.JLabel();
+        PanelVentas = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        TablaVENTAS = new javax.swing.JTable();
+        PanelInventario = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(204, 204, 204));
+        setBackground(new java.awt.Color(255, 255, 255));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -589,92 +589,13 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel13.setBackground(new java.awt.Color(51, 0, 0));
         jLabel13.setOpaque(true);
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, 700));
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 80, 660));
 
         TituloPanel.setFont(new java.awt.Font("Adobe Gothic Std B", 0, 48)); // NOI18N
         TituloPanel.setForeground(new java.awt.Color(51, 0, 0));
         TituloPanel.setText("|      Empleados");
         TituloPanel.setAlignmentY(0.0F);
         getContentPane().add(TituloPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, -1, -1));
-
-        PanelVentas.setBackground(new java.awt.Color(255, 255, 255));
-        PanelVentas.setPreferredSize(new java.awt.Dimension(1240, 700));
-
-        TablaVENTAS.setBackground(new java.awt.Color(255, 204, 204));
-        TablaVENTAS.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        TablaVENTAS.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Vendedor", "C.C.", "Tipo Auto", "Codigo", "Monto de Venta"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        TablaVENTAS.setCellSelectionEnabled(false);
-        TablaVENTAS.setDoubleBuffered(true);
-        TablaVENTAS.setGridColor(new java.awt.Color(102, 0, 0));
-        TablaVENTAS.setRequestFocusEnabled(false);
-        TablaVENTAS.setRowHeight(40);
-        TablaVENTAS.setSelectionBackground(new java.awt.Color(255, 153, 153));
-        TablaVENTAS.setSelectionForeground(new java.awt.Color(153, 0, 0));
-        TablaVENTAS.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-        TablaVENTAS.setShowGrid(true);
-        jScrollPane3.setViewportView(TablaVENTAS);
-        TablaVENTAS.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-        TablaVENTAS.getAccessibleContext().setAccessibleName("");
-
-        javax.swing.GroupLayout PanelVentasLayout = new javax.swing.GroupLayout(PanelVentas);
-        PanelVentas.setLayout(PanelVentasLayout);
-        PanelVentasLayout.setHorizontalGroup(
-            PanelVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelVentasLayout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 1101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
-        );
-        PanelVentasLayout.setVerticalGroup(
-            PanelVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelVentasLayout.createSequentialGroup()
-                .addContainerGap(184, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29))
-        );
-
-        getContentPane().add(PanelVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 1160, 640));
-
-        PanelInventario.setBackground(new java.awt.Color(255, 255, 255));
-        PanelInventario.setPreferredSize(new java.awt.Dimension(1240, 700));
-
-        javax.swing.GroupLayout PanelInventarioLayout = new javax.swing.GroupLayout(PanelInventario);
-        PanelInventario.setLayout(PanelInventarioLayout);
-        PanelInventarioLayout.setHorizontalGroup(
-            PanelInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1160, Short.MAX_VALUE)
-        );
-        PanelInventarioLayout.setVerticalGroup(
-            PanelInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 640, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(PanelInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 1160, 640));
 
         PanelEmpleados.setBackground(new java.awt.Color(255, 255, 255));
         PanelEmpleados.setPreferredSize(new java.awt.Dimension(1240, 700));
@@ -799,9 +720,17 @@ public class Principal extends javax.swing.JFrame {
 
         PanelEmpleados.add(FrameAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 110, 680, -1));
 
+        jScrollPane1.setBackground(new java.awt.Color(51, 0, 0));
+        jScrollPane1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
+        jScrollPane1.setForeground(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setToolTipText("");
+        jScrollPane1.setFont(new java.awt.Font("Adobe Gothic Std B", 1, 12)); // NOI18N
+        jScrollPane1.setOpaque(false);
+
+        TablaEMPLEADOS.setAutoCreateRowSorter(true);
         TablaEMPLEADOS.setBackground(new java.awt.Color(255, 204, 204));
-        TablaEMPLEADOS.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        TablaEMPLEADOS.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        TablaEMPLEADOS.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
+        TablaEMPLEADOS.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         TablaEMPLEADOS.setForeground(new java.awt.Color(0, 0, 0));
         TablaEMPLEADOS.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -828,6 +757,7 @@ public class Principal extends javax.swing.JFrame {
         });
         TablaEMPLEADOS.setColumnSelectionAllowed(true);
         TablaEMPLEADOS.setGridColor(new java.awt.Color(255, 255, 255));
+        TablaEMPLEADOS.setIntercellSpacing(new java.awt.Dimension(5, 5));
         TablaEMPLEADOS.setRowHeight(40);
         TablaEMPLEADOS.setSelectionBackground(new java.awt.Color(255, 153, 153));
         TablaEMPLEADOS.setSelectionForeground(new java.awt.Color(102, 0, 0));
@@ -839,6 +769,7 @@ public class Principal extends javax.swing.JFrame {
         TablaEMPLEADOS.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         PanelEmpleados.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 244, 1101, -1));
+        jScrollPane1.getAccessibleContext().setAccessibleName("");
 
         BotonOrdenar.setText("Ordenar por nombre");
         BotonOrdenar.addActionListener(new java.awt.event.ActionListener() {
@@ -879,6 +810,95 @@ public class Principal extends javax.swing.JFrame {
         PanelEmpleados.add(LabelFondoBorroso, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 1340, 590));
 
         getContentPane().add(PanelEmpleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 1160, 640));
+
+        PanelVentas.setBackground(new java.awt.Color(255, 255, 255));
+        PanelVentas.setPreferredSize(new java.awt.Dimension(1240, 700));
+
+        jScrollPane3.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 5));
+        jScrollPane3.setForeground(new java.awt.Color(51, 0, 0));
+        jScrollPane3.setAutoscrolls(true);
+        jScrollPane3.setFont(new java.awt.Font("Adobe Gothic Std B", 1, 14)); // NOI18N
+
+        TablaVENTAS.setBackground(new java.awt.Color(255, 204, 204));
+        TablaVENTAS.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 3, true));
+        TablaVENTAS.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        TablaVENTAS.setForeground(new java.awt.Color(0, 0, 0));
+        TablaVENTAS.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Vendedor", "C.C.", "Tipo Auto", "Codigo", "Monto de Venta"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        TablaVENTAS.setCellSelectionEnabled(false);
+        TablaVENTAS.setDoubleBuffered(true);
+        TablaVENTAS.setGridColor(new java.awt.Color(255, 255, 255));
+        TablaVENTAS.setOpaque(false);
+        TablaVENTAS.setRequestFocusEnabled(false);
+        TablaVENTAS.setRowHeight(40);
+        TablaVENTAS.setSelectionBackground(new java.awt.Color(255, 153, 153));
+        TablaVENTAS.setSelectionForeground(new java.awt.Color(153, 0, 0));
+        TablaVENTAS.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        TablaVENTAS.setShowGrid(false);
+        TablaVENTAS.setShowVerticalLines(true);
+        jScrollPane3.setViewportView(TablaVENTAS);
+        TablaVENTAS.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        TablaVENTAS.getAccessibleContext().setAccessibleName("");
+
+        javax.swing.GroupLayout PanelVentasLayout = new javax.swing.GroupLayout(PanelVentas);
+        PanelVentas.setLayout(PanelVentasLayout);
+        PanelVentasLayout.setHorizontalGroup(
+            PanelVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelVentasLayout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 1101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
+        );
+        PanelVentasLayout.setVerticalGroup(
+            PanelVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelVentasLayout.createSequentialGroup()
+                .addContainerGap(176, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29))
+        );
+
+        getContentPane().add(PanelVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 1160, 640));
+
+        PanelInventario.setBackground(new java.awt.Color(255, 255, 255));
+        PanelInventario.setPreferredSize(new java.awt.Dimension(1240, 700));
+
+        javax.swing.GroupLayout PanelInventarioLayout = new javax.swing.GroupLayout(PanelInventario);
+        PanelInventario.setLayout(PanelInventarioLayout);
+        PanelInventarioLayout.setHorizontalGroup(
+            PanelInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1160, Short.MAX_VALUE)
+        );
+        PanelInventarioLayout.setVerticalGroup(
+            PanelInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 640, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(PanelInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 1160, 640));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
