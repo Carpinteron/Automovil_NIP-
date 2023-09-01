@@ -240,10 +240,10 @@ public class Principal extends javax.swing.JFrame {
         }
 
     }
-    
+
     //05 Subrutina para eliminar registros
-    public void EliminarRegistro(){
-        
+    public void EliminarRegistro() {
+
     }
 
     //06 Subrutina para limpiar campos
@@ -427,6 +427,7 @@ public class Principal extends javax.swing.JFrame {
         PanelVentas.setEnabled(true);
         PanelInventario.setEnabled(false);
         Actual = PanelVentas;
+        CambiarBotones("PanelVentas");
         TituloPanel.setText("|  Ventas");
         //ARCHIVO EMPLEADOS
         //Crear
@@ -480,7 +481,25 @@ public class Principal extends javax.swing.JFrame {
         p.setEnabled(!p.isEnabled());
     }
 
-   
+    public void CambiarBotones(String Actual) {
+        if (Actual.equalsIgnoreCase("PanelInventario")) {
+            Boton_Inventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/inventarriosinfondox63.png")));
+            Boton_Ventas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/ventassinfondox53.png")));
+            Boton_Empleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/empleadosinfondo x53.png")));
+        }
+        if (Actual.equalsIgnoreCase("PanelVentas")) {
+            Boton_Inventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/inventarriosinfondox53.png")));
+            Boton_Ventas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/ventassinfondox63.png")));
+            Boton_Empleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/empleadosinfondo x53.png")));
+        }
+        if (Actual.equalsIgnoreCase("PanelEmpleados")) {
+            Boton_Inventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/inventarriosinfondox53.png")));
+            Boton_Ventas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/ventassinfondox53.png")));
+            Boton_Empleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/empleado sin fondox63.png")));
+        }
+
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -917,8 +936,15 @@ public class Principal extends javax.swing.JFrame {
             PanelEmpleados.setVisible(true);
             PanelEmpleados.setEnabled(true);
             CambiaEstadoPANEL(Actual);
-            Actual= PanelEmpleados; //System.out.println(Actual); } *
+            Actual = PanelEmpleados;
+           
+            //System.out.println(Actual); } *
             TituloPanel.setText("|  Empleados");
+//             Boton_Inventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/inventarriosinfondox53.png")));
+//            Boton_Ventas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/ventassinfondox53.png")));
+//            Boton_Empleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/empleado sin fondox63.png")));
+//     
+            CambiarBotones("PanelEmpleados");
         }
         /**
          * *
@@ -935,7 +961,13 @@ public class Principal extends javax.swing.JFrame {
             PanelVentas.setEnabled(true);
             CambiaEstadoPANEL(Actual);
             Actual = PanelVentas;
+           
             TituloPanel.setText("|  Ventas");
+            CambiarBotones("PanelVentas");
+//             Boton_Inventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/inventarriosinfondox53.png")));
+//            Boton_Ventas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/ventassinfondox63.png")));
+//            Boton_Empleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/empleadosinfondo x53.png")));
+//      
             //System.out.println(Actual);
         }
     }//GEN-LAST:event_Boton_VentasActionPerformed
@@ -947,6 +979,11 @@ public class Principal extends javax.swing.JFrame {
             CambiaEstadoPANEL(Actual);
             Actual = PanelInventario;
             TituloPanel.setText("|  Inventario");
+            CambiarBotones("PanelInventario");
+//            Boton_Inventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/inventarriosinfondox63.png")));
+//            Boton_Ventas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/ventassinfondox53.png")));
+//            Boton_Empleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/empleadosinfondo x53.png")));
+//       
             //System.out.println(Actual);
         }
     }//GEN-LAST:event_Boton_InventarioActionPerformed
@@ -1006,11 +1043,8 @@ public class Principal extends javax.swing.JFrame {
         Limpiar();        Limpiar();    }//GEN-LAST:event_BotonLimpiarActionPerformed
 
     private void BotonparaEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonparaEliminarActionPerformed
-        
-    
 
-   
-    
+
     }//GEN-LAST:event_BotonparaEliminarActionPerformed
 
     public static void main(String args[]) {
@@ -1025,27 +1059,23 @@ public class Principal extends javax.swing.JFrame {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
 
-}
+                }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Inicio.class  
+            java.util.logging.Logger.getLogger(Inicio.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Inicio.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-} catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Inicio.class  
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Inicio.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-} catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Inicio.class  
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Inicio.class  
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Inicio.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
