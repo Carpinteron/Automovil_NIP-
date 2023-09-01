@@ -14,6 +14,7 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.swing.ButtonGroup;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 import javax.swing.JPanel;
@@ -479,6 +480,7 @@ public class Principal extends javax.swing.JFrame {
         p.setEnabled(!p.isEnabled());
     }
 
+   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -541,30 +543,36 @@ public class Principal extends javax.swing.JFrame {
         Boton_Empleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/empleadosinfondo x53.png"))); // NOI18N
         Boton_Empleados.setBorderPainted(false);
         Boton_Empleados.setContentAreaFilled(false);
-        Boton_Empleados.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/empleadosinfondo x63 .png"))); // NOI18N
-        Boton_Empleados.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/empleadosinfondo x63 .png"))); // NOI18N
+        Boton_Empleados.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/empleadosinfondo x53brillo.png"))); // NOI18N
         Boton_Empleados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Boton_EmpleadosActionPerformed(evt);
             }
         });
-        getContentPane().add(Boton_Empleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 70, 60));
+        getContentPane().add(Boton_Empleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 60, 60));
 
-        Boton_Ventas.setText("V");
+        Boton_Ventas.setBackground(new java.awt.Color(51, 0, 0));
+        Boton_Ventas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/ventassinfondox53.png"))); // NOI18N
+        Boton_Ventas.setBorderPainted(false);
+        Boton_Ventas.setContentAreaFilled(false);
+        Boton_Ventas.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/ventassinfondox53brillo.png"))); // NOI18N
         Boton_Ventas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Boton_VentasActionPerformed(evt);
             }
         });
-        getContentPane().add(Boton_Ventas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 53, 50));
+        getContentPane().add(Boton_Ventas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 60, 60));
 
-        Boton_Inventario.setText("I");
+        Boton_Inventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/inventarriosinfondox53.png"))); // NOI18N
+        Boton_Inventario.setBorderPainted(false);
+        Boton_Inventario.setContentAreaFilled(false);
+        Boton_Inventario.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/inventarriosinfondox53brillo.png"))); // NOI18N
         Boton_Inventario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Boton_InventarioActionPerformed(evt);
             }
         });
-        getContentPane().add(Boton_Inventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 53, 51));
+        getContentPane().add(Boton_Inventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 60, 60));
 
         jButton1.setText("N");
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 540, 53, 53));
@@ -850,7 +858,6 @@ public class Principal extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        TablaVENTAS.setCellSelectionEnabled(false);
         TablaVENTAS.setDoubleBuffered(true);
         TablaVENTAS.setGridColor(new java.awt.Color(255, 255, 255));
         TablaVENTAS.setOpaque(false);
