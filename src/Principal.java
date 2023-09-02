@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
+import java.awt.Color;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
@@ -430,6 +431,7 @@ public class Principal extends javax.swing.JFrame {
         PanelVentas.setEnabled(true);
         PanelInventario.setEnabled(false);
         Actual = PanelVentas;
+        Nocturno=false;
         CambiarBotones("PanelVentas");
         TituloPanel.setText("|  Ventas");
         //ARCHIVO EMPLEADOS
@@ -514,7 +516,7 @@ public class Principal extends javax.swing.JFrame {
 
         Boton_Ventas = new javax.swing.JButton();
         Boton_Inventario = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        Modo = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         Boton_Empleados = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -629,10 +631,15 @@ public class Principal extends javax.swing.JFrame {
         });
         getContentPane().add(Boton_Inventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 80, 70));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/Nightx53.png"))); // NOI18N
-        jButton1.setContentAreaFilled(false);
-        jButton1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/Nightx53brillo.png"))); // NOI18N
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 561, 60, 60));
+        Modo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/Nightx53.png"))); // NOI18N
+        Modo.setContentAreaFilled(false);
+        Modo.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/Nightx53brillo.png"))); // NOI18N
+        Modo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Modo, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 561, 60, 60));
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/infosinfondox53.png"))); // NOI18N
         jButton2.setContentAreaFilled(false);
@@ -1271,6 +1278,37 @@ public class Principal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_BotonparaEliminarActionPerformed
 
+    boolean Nocturno;
+    Color fondoclaro = Color.decode("#FFFFFF");//blanco
+    Color fondooscuro = Color.decode("#2A2333");
+    Color rojooscuro=Color.decode("#330000");
+    
+    private void ModoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModoActionPerformed
+       if(Nocturno==true){//esta oscuro
+           System.out.println("Pasar Modo claro");
+            PanelEmpleados.setBackground(fondoclaro);
+           PanelVentas.setBackground(fondoclaro);
+           PanelInventario.setBackground(fondoclaro);
+           TituloPanel.setForeground(rojooscuro);
+            TituloPanel.repaint();
+           Modo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/Nightx53.png")));
+       
+           Nocturno=false;
+       }else{//estaclaro
+           System.out.println("Pasar Modo oscuro");
+           
+           PanelEmpleados.setBackground(fondooscuro);
+           PanelVentas.setBackground(fondooscuro);
+           PanelInventario.setBackground(fondooscuro);
+           TituloPanel.setForeground(fondoclaro);
+            TituloPanel.repaint();
+           Modo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/solsinfondpx53.png")));
+       
+           Nocturno=true;
+       }
+       
+    }//GEN-LAST:event_ModoActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -1330,6 +1368,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel CantVendidaToyota;
     private javax.swing.JInternalFrame FrameAgregar;
     private javax.swing.JLabel LabelFondoBorroso;
+    private javax.swing.JButton Modo;
     private javax.swing.JPanel PanelAgregarEmpleado;
     private javax.swing.JPanel PanelEmpleados;
     private javax.swing.JPanel PanelInventario;
@@ -1362,7 +1401,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField fsalariocomisiones;
     private javax.swing.JTextField fsalariofijo;
     private javax.swing.JTextField ftelefono;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
