@@ -553,6 +553,43 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         TablaVENTAS = new javax.swing.JTable();
         PanelInventario = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        CantVendidaMercedes = new javax.swing.JLabel();
+        CantVendidaBMW = new javax.swing.JLabel();
+        CantVendidaHonda = new javax.swing.JLabel();
+        CantVendidaFord = new javax.swing.JLabel();
+        CantVendidaToyota = new javax.swing.JLabel();
+        TotalMercedes = new javax.swing.JLabel();
+        TotalBMW = new javax.swing.JLabel();
+        TotalHonda = new javax.swing.JLabel();
+        TotalFord = new javax.swing.JLabel();
+        TotalToyota = new javax.swing.JLabel();
+        TitMercedes = new javax.swing.JLabel();
+        TitToyota = new javax.swing.JLabel();
+        TitBMW = new javax.swing.JLabel();
+        TitFord = new javax.swing.JLabel();
+        TitHonda = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -792,6 +829,7 @@ public class Principal extends javax.swing.JFrame {
         TablaEMPLEADOS.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         TablaEMPLEADOS.setShowGrid(false);
         TablaEMPLEADOS.setShowVerticalLines(true);
+        TablaEMPLEADOS.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(TablaEMPLEADOS);
         TablaEMPLEADOS.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
@@ -913,15 +951,200 @@ public class Principal extends javax.swing.JFrame {
         PanelInventario.setBackground(new java.awt.Color(255, 255, 255));
         PanelInventario.setPreferredSize(new java.awt.Dimension(1240, 700));
 
+        jScrollPane2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel27.setFont(new java.awt.Font("Tekton Pro Ext", 2, 18)); // NOI18N
+        jLabel27.setForeground(new java.awt.Color(255, 204, 204));
+        jLabel27.setText("Valor Total: ");
+        jPanel1.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 1190, -1, -1));
+
+        jLabel26.setFont(new java.awt.Font("Tekton Pro Ext", 2, 18)); // NOI18N
+        jLabel26.setForeground(new java.awt.Color(255, 204, 204));
+        jLabel26.setText("Valor Total: ");
+        jPanel1.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 920, -1, -1));
+
+        jLabel25.setFont(new java.awt.Font("Tekton Pro Ext", 2, 18)); // NOI18N
+        jLabel25.setForeground(new java.awt.Color(255, 204, 204));
+        jLabel25.setText("Cantidad Vendida :");
+        jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 1190, -1, -1));
+
+        jLabel24.setFont(new java.awt.Font("Tekton Pro Ext", 2, 18)); // NOI18N
+        jLabel24.setForeground(new java.awt.Color(255, 204, 204));
+        jLabel24.setText("Cantidad Vendida :");
+        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 920, -1, -1));
+
+        jLabel23.setFont(new java.awt.Font("Tekton Pro Ext", 2, 18)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(255, 204, 204));
+        jLabel23.setText("Valor Total: ");
+        jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 650, -1, -1));
+
+        jLabel22.setFont(new java.awt.Font("Tekton Pro Ext", 2, 18)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(255, 204, 204));
+        jLabel22.setText("Cantidad Vendida :");
+        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 650, -1, -1));
+
+        jLabel21.setFont(new java.awt.Font("Tekton Pro Ext", 2, 18)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(255, 204, 204));
+        jLabel21.setText("Valor Total: ");
+        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 370, -1, -1));
+
+        jLabel20.setFont(new java.awt.Font("Tekton Pro Ext", 2, 18)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(255, 204, 204));
+        jLabel20.setText("Cantidad Vendida :");
+        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 370, -1, -1));
+
+        jLabel19.setFont(new java.awt.Font("Tekton Pro Ext", 2, 18)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(255, 204, 204));
+        jLabel19.setText("Valor Total: ");
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 100, -1, -1));
+
+        jLabel18.setFont(new java.awt.Font("Tekton Pro Ext", 2, 18)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(255, 204, 204));
+        jLabel18.setText("Cantidad Vendida :");
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 100, -1, -1));
+
+        CantVendidaMercedes.setFont(new java.awt.Font("Orator Std", 1, 48)); // NOI18N
+        CantVendidaMercedes.setForeground(new java.awt.Color(255, 255, 255));
+        CantVendidaMercedes.setText("xx");
+        jPanel1.add(CantVendidaMercedes, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 1230, 160, 60));
+
+        CantVendidaBMW.setFont(new java.awt.Font("Orator Std", 1, 48)); // NOI18N
+        CantVendidaBMW.setForeground(new java.awt.Color(255, 255, 255));
+        CantVendidaBMW.setText("xx");
+        jPanel1.add(CantVendidaBMW, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 960, 160, 60));
+
+        CantVendidaHonda.setFont(new java.awt.Font("Orator Std", 1, 48)); // NOI18N
+        CantVendidaHonda.setForeground(new java.awt.Color(255, 255, 255));
+        CantVendidaHonda.setText("xx");
+        jPanel1.add(CantVendidaHonda, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 700, 160, 60));
+
+        CantVendidaFord.setFont(new java.awt.Font("Orator Std", 1, 48)); // NOI18N
+        CantVendidaFord.setForeground(new java.awt.Color(255, 255, 255));
+        CantVendidaFord.setText("xx");
+        jPanel1.add(CantVendidaFord, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 410, 160, 60));
+
+        CantVendidaToyota.setFont(new java.awt.Font("Orator Std", 1, 48)); // NOI18N
+        CantVendidaToyota.setForeground(new java.awt.Color(255, 255, 255));
+        CantVendidaToyota.setText("xx");
+        jPanel1.add(CantVendidaToyota, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 150, 160, 60));
+
+        TotalMercedes.setFont(new java.awt.Font("Orator Std", 1, 48)); // NOI18N
+        TotalMercedes.setForeground(new java.awt.Color(255, 255, 255));
+        TotalMercedes.setText("$XXXXX");
+        jPanel1.add(TotalMercedes, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 1230, 350, 60));
+
+        TotalBMW.setFont(new java.awt.Font("Orator Std", 1, 48)); // NOI18N
+        TotalBMW.setForeground(new java.awt.Color(255, 255, 255));
+        TotalBMW.setText("$XXXXX");
+        jPanel1.add(TotalBMW, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 960, 350, 60));
+
+        TotalHonda.setFont(new java.awt.Font("Orator Std", 1, 48)); // NOI18N
+        TotalHonda.setForeground(new java.awt.Color(255, 255, 255));
+        TotalHonda.setText("$XXXXX");
+        jPanel1.add(TotalHonda, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 700, 350, 60));
+
+        TotalFord.setFont(new java.awt.Font("Orator Std", 1, 48)); // NOI18N
+        TotalFord.setForeground(new java.awt.Color(255, 255, 255));
+        TotalFord.setText("$XXXXX");
+        jPanel1.add(TotalFord, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 410, 350, 60));
+
+        TotalToyota.setFont(new java.awt.Font("Orator Std", 1, 48)); // NOI18N
+        TotalToyota.setForeground(new java.awt.Color(255, 255, 255));
+        TotalToyota.setText("$XXXXX");
+        jPanel1.add(TotalToyota, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 150, 350, 60));
+
+        TitMercedes.setFont(new java.awt.Font("Orator Std", 1, 36)); // NOI18N
+        TitMercedes.setForeground(new java.awt.Color(255, 255, 255));
+        TitMercedes.setText("MERCEDES - BENS");
+        jPanel1.add(TitMercedes, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 1110, -1, -1));
+
+        TitToyota.setFont(new java.awt.Font("Orator Std", 1, 36)); // NOI18N
+        TitToyota.setForeground(new java.awt.Color(255, 255, 255));
+        TitToyota.setText("TOYOTA");
+        jPanel1.add(TitToyota, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 30, -1, -1));
+
+        TitBMW.setFont(new java.awt.Font("Orator Std", 1, 36)); // NOI18N
+        TitBMW.setForeground(new java.awt.Color(255, 255, 255));
+        TitBMW.setText("BMW");
+        jPanel1.add(TitBMW, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 850, -1, -1));
+
+        TitFord.setFont(new java.awt.Font("Orator Std", 1, 36)); // NOI18N
+        TitFord.setForeground(new java.awt.Color(255, 255, 255));
+        TitFord.setText("FORD");
+        jPanel1.add(TitFord, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 300, -1, -1));
+
+        TitHonda.setFont(new java.awt.Font("Orator Std", 1, 36)); // NOI18N
+        TitHonda.setForeground(new java.awt.Color(255, 255, 255));
+        TitHonda.setText("HONDA");
+        jPanel1.add(TitHonda, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 570, -1, -1));
+
+        jLabel31.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/bmwx430.png"))); // NOI18N
+        jLabel31.setOpaque(true);
+        jPanel1.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 827, 430, 220));
+
+        jLabel30.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/mercedesx430.png"))); // NOI18N
+        jLabel30.setOpaque(true);
+        jPanel1.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 1094, 430, 220));
+
+        jLabel29.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/hondax430.png"))); // NOI18N
+        jLabel29.setOpaque(true);
+        jPanel1.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 557, 430, 220));
+
+        jLabel28.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fordx430.png"))); // NOI18N
+        jLabel28.setOpaque(true);
+        jPanel1.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, 430, 220));
+
+        jLabel17.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/toyotax430.png"))); // NOI18N
+        jLabel17.setOpaque(true);
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, 430, 220));
+
+        jLabel4.setBackground(new java.awt.Color(102, 0, 0));
+        jLabel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jLabel4.setOpaque(true);
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 542, 1077, 250));
+
+        jLabel1.setBackground(new java.awt.Color(102, 0, 0));
+        jLabel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jLabel1.setOpaque(true);
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 274, 1077, 250));
+
+        jLabel3.setBackground(new java.awt.Color(102, 0, 0));
+        jLabel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jLabel3.setOpaque(true);
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 6, 1077, 250));
+
+        jLabel15.setBackground(new java.awt.Color(102, 0, 0));
+        jLabel15.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jLabel15.setOpaque(true);
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 810, 1077, 250));
+
+        jLabel16.setBackground(new java.awt.Color(102, 0, 0));
+        jLabel16.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jLabel16.setOpaque(true);
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 1078, 1077, 250));
+
+        jScrollPane2.setViewportView(jPanel1);
+
         javax.swing.GroupLayout PanelInventarioLayout = new javax.swing.GroupLayout(PanelInventario);
         PanelInventario.setLayout(PanelInventarioLayout);
         PanelInventarioLayout.setHorizontalGroup(
             PanelInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1160, Short.MAX_VALUE)
+            .addComponent(jScrollPane2)
         );
         PanelInventarioLayout.setVerticalGroup(
             PanelInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 640, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelInventarioLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 557, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         getContentPane().add(PanelInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 1160, 640));
@@ -1099,6 +1322,11 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton Boton_Ventas;
     private javax.swing.JButton BotonparaAgregar;
     private javax.swing.JButton BotonparaEliminar;
+    private javax.swing.JLabel CantVendidaBMW;
+    private javax.swing.JLabel CantVendidaFord;
+    private javax.swing.JLabel CantVendidaHonda;
+    private javax.swing.JLabel CantVendidaMercedes;
+    private javax.swing.JLabel CantVendidaToyota;
     private javax.swing.JInternalFrame FrameAgregar;
     private javax.swing.JLabel LabelFondoBorroso;
     private javax.swing.JPanel PanelAgregarEmpleado;
@@ -1107,7 +1335,17 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel PanelVentas;
     private javax.swing.JTable TablaEMPLEADOS;
     private javax.swing.JTable TablaVENTAS;
+    private javax.swing.JLabel TitBMW;
+    private javax.swing.JLabel TitFord;
+    private javax.swing.JLabel TitHonda;
+    private javax.swing.JLabel TitMercedes;
+    private javax.swing.JLabel TitToyota;
     private javax.swing.JLabel TituloPanel;
+    private javax.swing.JLabel TotalBMW;
+    private javax.swing.JLabel TotalFord;
+    private javax.swing.JLabel TotalHonda;
+    private javax.swing.JLabel TotalMercedes;
+    private javax.swing.JLabel TotalToyota;
     private javax.swing.JButton cerrar;
     private javax.swing.JLabel error1;
     private javax.swing.JLabel error2;
@@ -1125,18 +1363,40 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField ftelefono;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     // End of variables declaration//GEN-END:variables
 }
