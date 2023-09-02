@@ -2,6 +2,8 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -36,6 +38,7 @@ public class Principal extends javax.swing.JFrame {
      * archivo de texto llamado Empleados, sin ningún orden específico.
      */
     public static void agregarDatosEmpleados(String file_name) {
+
         try {
             FileWriter outFile = new FileWriter(file_name + ".txt", false);
             PrintWriter registro = new PrintWriter(outFile);
@@ -78,7 +81,6 @@ public class Principal extends javax.swing.JFrame {
                 registro.println(Nombre + "\t" + Cedula + "\t" + Cargo + "\t" + Telefono + "\t" + FechaIngreso + "\t" + SalarioFijo + "\t" + SalarioComisiones);
 
             }
-
             registro.close();
             System.out.println("Datos agregados exitosamente al archivo.");
 
@@ -242,9 +244,53 @@ public class Principal extends javax.swing.JFrame {
     }
 
     //05 Subrutina para eliminar registros
-    public void EliminarRegistro() {
+    public void EliminarRegistro(Scanner sc, String file_name, JTable tabla) {
+File original = new File(file_name + ".txt");
+        try {
+            FileReader FR = new FileReader(file_name + ".txt");
+            BufferedReader BR = new BufferedReader(FR);
+            FileWriter FW = new FileWriter("EmpleadosTemp.txt", true);
+            BufferedWriter BW = new BufferedWriter(FW);
+            String linea, borrar_nombre = fnombreE.getText();
+            boolean encontrado = false;
+            while ((linea = BR.readLine()) != null) {
+                String[] campos = linea.split("\t");
+                if (!campos[0].equalsIgnoreCase(borrar_nombre)) {
+                    BW.write(linea); // si el nombre no es el que se busca, se escribe en el archivo temporal
+                    BW.newLine();
+                } else {
+                    encontrado = true;
+                    System.out.println("ENCONTRADO");
+                }
+
+            }
+            BR.close();
+            BW.close();
+            if (encontrado) {
+                if (original.delete()) {
+                    File temporal = new File("EmpleadosTemp.txt");
+                    if (temporal.renameTo(original)) {
+                        JOptionPane.showMessageDialog(null, "Los datos se han eliminado satisfactoriamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Ha ocurrido un error al renombrar el archivo temporal.", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                     LeerNormal(sc, file_name, tabla);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Ha ocurrido un error al eliminar el archivo original.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(null, "No se encontró el empleado con ese nombre.", "Error", JOptionPane.ERROR_MESSAGE);
+
+            }
+
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error al eliminar el empleado.", "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
+        }
 
     }
+
 
     //06 Subrutina para limpiar campos
     public void Limpiar() {
@@ -465,6 +511,7 @@ public class Principal extends javax.swing.JFrame {
         });
         //No visible
         FrameAgregar.setVisible(false);
+        FrameEliminar.setVisible(false);
         LabelFondoBorroso.setVisible(false);
         error1.setVisible(false);
         error2.setVisible(false);
@@ -514,6 +561,15 @@ public class Principal extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         TituloPanel = new javax.swing.JLabel();
         PanelEmpleados = new javax.swing.JPanel();
+        FrameEliminar = new javax.swing.JInternalFrame();
+        PanelEliminarEmpleado = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
+        fnombreE = new javax.swing.JTextField();
+        cerrar1 = new javax.swing.JButton();
+        BotonEliminarEmpleados = new javax.swing.JButton();
+        BotonLimpiar1 = new javax.swing.JButton();
+        jLabel22 = new javax.swing.JLabel();
+        error9 = new javax.swing.JLabel();
         FrameAgregar = new javax.swing.JInternalFrame();
         PanelAgregarEmpleado = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -628,44 +684,81 @@ public class Principal extends javax.swing.JFrame {
         PanelEmpleados.setPreferredSize(new java.awt.Dimension(1240, 700));
         PanelEmpleados.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        FrameEliminar.setVisible(true);
+        FrameEliminar.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        PanelEliminarEmpleado.setBackground(new java.awt.Color(255, 255, 255));
+        PanelEliminarEmpleado.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel15.setText("Nombre:");
+        PanelEliminarEmpleado.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, -1, -1));
+
+        fnombreE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fnombreEActionPerformed(evt);
+            }
+        });
+        PanelEliminarEmpleado.add(fnombreE, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, 280, -1));
+
+        cerrar1.setText("Cerrar");
+        cerrar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cerrar1ActionPerformed(evt);
+            }
+        });
+        PanelEliminarEmpleado.add(cerrar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 10, -1, -1));
+
+        BotonEliminarEmpleados.setText("Eliminar");
+        BotonEliminarEmpleados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonEliminarEmpleadosActionPerformed(evt);
+            }
+        });
+        PanelEliminarEmpleado.add(BotonEliminarEmpleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(456, 404, -1, -1));
+
+        BotonLimpiar1.setText("Limpiar");
+        BotonLimpiar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonLimpiar1ActionPerformed(evt);
+            }
+        });
+        PanelEliminarEmpleado.add(BotonLimpiar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(534, 404, -1, -1));
+
+        jLabel22.setText("Poner Imagen de Empleado");
+        PanelEliminarEmpleado.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 90, 170, 210));
+
+        error9.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        error9.setForeground(new java.awt.Color(255, 0, 0));
+        error9.setText("(!) El nombre no debe contener números ni caracteres especiales.");
+        PanelEliminarEmpleado.add(error9, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, 290, -1));
+
+        FrameEliminar.getContentPane().add(PanelEliminarEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        PanelEmpleados.add(FrameEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, 700, -1));
+
         FrameAgregar.setVisible(true);
 
         PanelAgregarEmpleado.setBackground(new java.awt.Color(255, 255, 255));
-        PanelAgregarEmpleado.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setText("Nombre:");
-        PanelAgregarEmpleado.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 89, -1, -1));
 
         jLabel6.setText("Cédula:");
-        PanelAgregarEmpleado.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 135, -1, -1));
 
         jLabel7.setText("Cargo:");
-        PanelAgregarEmpleado.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 175, -1, -1));
 
         jLabel8.setText("Teléfono:");
-        PanelAgregarEmpleado.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 215, -1, -1));
 
         jLabel9.setText("Fecha de Ingreso:");
-        PanelAgregarEmpleado.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 258, -1, -1));
 
         jLabel10.setText("Salario Fijo Mensual:");
-        PanelAgregarEmpleado.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 298, -1, -1));
 
         jLabel11.setText("Salario+Comisiones:");
-        PanelAgregarEmpleado.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 335, -1, 22));
 
         fnombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fnombreActionPerformed(evt);
             }
         });
-        PanelAgregarEmpleado.add(fnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(164, 86, 280, -1));
-        PanelAgregarEmpleado.add(fcedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(164, 132, 280, -1));
-        PanelAgregarEmpleado.add(fcargo, new org.netbeans.lib.awtextra.AbsoluteConstraints(164, 172, 280, -1));
-        PanelAgregarEmpleado.add(ffechaingreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(164, 255, 280, -1));
-        PanelAgregarEmpleado.add(ftelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(164, 212, 280, -1));
-        PanelAgregarEmpleado.add(fsalariofijo, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 295, 280, -1));
-        PanelAgregarEmpleado.add(fsalariocomisiones, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 335, 280, -1));
 
         cerrar.setText("Cerrar");
         cerrar.addActionListener(new java.awt.event.ActionListener() {
@@ -673,7 +766,6 @@ public class Principal extends javax.swing.JFrame {
                 cerrarActionPerformed(evt);
             }
         });
-        PanelAgregarEmpleado.add(cerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 10, -1, -1));
 
         BotonAgregarEmpleados.setText("Agregar");
         BotonAgregarEmpleados.addActionListener(new java.awt.event.ActionListener() {
@@ -681,7 +773,6 @@ public class Principal extends javax.swing.JFrame {
                 BotonAgregarEmpleadosActionPerformed(evt);
             }
         });
-        PanelAgregarEmpleado.add(BotonAgregarEmpleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(456, 404, -1, -1));
 
         BotonLimpiar.setText("Limpiar");
         BotonLimpiar.addActionListener(new java.awt.event.ActionListener() {
@@ -689,63 +780,177 @@ public class Principal extends javax.swing.JFrame {
                 BotonLimpiarActionPerformed(evt);
             }
         });
-        PanelAgregarEmpleado.add(BotonLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(534, 404, -1, -1));
 
         jLabel12.setText("Poner Imagen de Empleado");
-        PanelAgregarEmpleado.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 90, 170, 210));
 
         error7.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         error7.setForeground(new java.awt.Color(255, 0, 0));
         error7.setText("(!) Salario debe contener solo numeros mayores a cero");
-        PanelAgregarEmpleado.add(error7, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 360, 290, -1));
 
         error1.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         error1.setForeground(new java.awt.Color(255, 0, 0));
         error1.setText("(!) El nombre no debe contener números ni caracteres especiales.");
-        PanelAgregarEmpleado.add(error1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, 290, -1));
 
         error2.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         error2.setForeground(new java.awt.Color(255, 0, 0));
         error2.setText("(!) La cédula debe contener solo números.");
-        PanelAgregarEmpleado.add(error2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 158, 290, 10));
 
         error3.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         error3.setForeground(new java.awt.Color(255, 0, 0));
         error3.setText("(!) Este campo no debe contener números ni caracteres especiales.");
-        PanelAgregarEmpleado.add(error3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 194, 300, -1));
 
         error4.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         error4.setForeground(new java.awt.Color(255, 0, 0));
         error4.setText("(!) El telefono solo debe contener 10 digitos numéricos.");
-        PanelAgregarEmpleado.add(error4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, 290, 20));
 
         error5.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         error5.setForeground(new java.awt.Color(255, 0, 0));
         error5.setText("(!) Formato de fecha no válido. Recuerde (DD/MM/AA)");
-        PanelAgregarEmpleado.add(error5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, 290, 10));
 
         error6.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         error6.setForeground(new java.awt.Color(255, 0, 0));
         error6.setText("(!) Salario debe contener solo numeros mayores a cero");
-        PanelAgregarEmpleado.add(error6, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 320, 290, 10));
+
+        javax.swing.GroupLayout PanelAgregarEmpleadoLayout = new javax.swing.GroupLayout(PanelAgregarEmpleado);
+        PanelAgregarEmpleado.setLayout(PanelAgregarEmpleadoLayout);
+        PanelAgregarEmpleadoLayout.setHorizontalGroup(
+            PanelAgregarEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelAgregarEmpleadoLayout.createSequentialGroup()
+                .addGroup(PanelAgregarEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelAgregarEmpleadoLayout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addGroup(PanelAgregarEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PanelAgregarEmpleadoLayout.createSequentialGroup()
+                                .addGap(3, 3, 3)
+                                .addComponent(jLabel5))
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel10))
+                        .addGap(13, 13, 13)
+                        .addGroup(PanelAgregarEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PanelAgregarEmpleadoLayout.createSequentialGroup()
+                                .addGap(4, 4, 4)
+                                .addComponent(fnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(error1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(PanelAgregarEmpleadoLayout.createSequentialGroup()
+                                .addGap(4, 4, 4)
+                                .addComponent(fcedula, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(error2, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(PanelAgregarEmpleadoLayout.createSequentialGroup()
+                                .addGap(4, 4, 4)
+                                .addComponent(fcargo, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(error3, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(PanelAgregarEmpleadoLayout.createSequentialGroup()
+                                .addGap(4, 4, 4)
+                                .addComponent(ftelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(error4, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(PanelAgregarEmpleadoLayout.createSequentialGroup()
+                                .addGap(4, 4, 4)
+                                .addComponent(ffechaingreso, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(error5, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(PanelAgregarEmpleadoLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(fsalariofijo, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(PanelAgregarEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PanelAgregarEmpleadoLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cerrar))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelAgregarEmpleadoLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 712, Short.MAX_VALUE)
+                                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(PanelAgregarEmpleadoLayout.createSequentialGroup()
+                        .addGap(160, 160, 160)
+                        .addComponent(error6, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PanelAgregarEmpleadoLayout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(jLabel11)
+                        .addGap(19, 19, 19)
+                        .addComponent(fsalariocomisiones, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PanelAgregarEmpleadoLayout.createSequentialGroup()
+                        .addGap(160, 160, 160)
+                        .addComponent(error7, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PanelAgregarEmpleadoLayout.createSequentialGroup()
+                        .addGap(456, 456, 456)
+                        .addComponent(BotonAgregarEmpleados)
+                        .addGap(5, 5, 5)
+                        .addComponent(BotonLimpiar)))
+                .addGap(20, 20, 20))
+        );
+        PanelAgregarEmpleadoLayout.setVerticalGroup(
+            PanelAgregarEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelAgregarEmpleadoLayout.createSequentialGroup()
+                .addGroup(PanelAgregarEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelAgregarEmpleadoLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(cerrar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(fnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(2, 2, 2)
+                        .addGroup(PanelAgregarEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PanelAgregarEmpleadoLayout.createSequentialGroup()
+                                .addComponent(error1)
+                                .addGap(8, 8, 8)
+                                .addComponent(fcedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(4, 4, 4)
+                                .addComponent(error2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(4, 4, 4)
+                                .addComponent(fcargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, 0)
+                                .addComponent(error3)
+                                .addGap(4, 4, 4)
+                                .addGroup(PanelAgregarEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(ftelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(PanelAgregarEmpleadoLayout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(error4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(5, 5, 5)
+                                .addComponent(ffechaingreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(3, 3, 3)
+                                .addComponent(error5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(5, 5, 5)
+                                .addComponent(fsalariofijo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(PanelAgregarEmpleadoLayout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addComponent(jLabel5)
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel6)
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel7)
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel8)
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel9)
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel10)
+                        .addGap(220, 220, 220)
+                        .addComponent(error6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(5, 5, 5)
+                        .addGroup(PanelAgregarEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fsalariocomisiones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(3, 3, 3)
+                        .addComponent(error7)))
+                .addGap(30, 30, 30)
+                .addGroup(PanelAgregarEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BotonAgregarEmpleados)
+                    .addComponent(BotonLimpiar)))
+        );
 
         javax.swing.GroupLayout FrameAgregarLayout = new javax.swing.GroupLayout(FrameAgregar.getContentPane());
         FrameAgregar.getContentPane().setLayout(FrameAgregarLayout);
         FrameAgregarLayout.setHorizontalGroup(
             FrameAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(FrameAgregarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(PanelAgregarEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(PanelAgregarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         FrameAgregarLayout.setVerticalGroup(
             FrameAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(FrameAgregarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(PanelAgregarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(PanelAgregarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        PanelEmpleados.add(FrameAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 110, 680, -1));
+        PanelEmpleados.add(FrameAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, 690, 410));
 
         jScrollPane1.setBackground(new java.awt.Color(51, 0, 0));
         jScrollPane1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
@@ -937,7 +1142,7 @@ public class Principal extends javax.swing.JFrame {
             PanelEmpleados.setEnabled(true);
             CambiaEstadoPANEL(Actual);
             Actual = PanelEmpleados;
-           
+
             //System.out.println(Actual); } *
             TituloPanel.setText("|  Empleados");
 //             Boton_Inventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/inventarriosinfondox53.png")));
@@ -961,7 +1166,7 @@ public class Principal extends javax.swing.JFrame {
             PanelVentas.setEnabled(true);
             CambiaEstadoPANEL(Actual);
             Actual = PanelVentas;
-           
+
             TituloPanel.setText("|  Ventas");
             CambiarBotones("PanelVentas");
 //             Boton_Inventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/inventarriosinfondox53.png")));
@@ -1002,9 +1207,9 @@ public class Principal extends javax.swing.JFrame {
 
     private void BotonparaAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonparaAgregarActionPerformed
         FrameAgregar.setVisible(true);
+        LabelFondoBorroso.setVisible(true);
         TablaEMPLEADOS.setVisible(false);
         jScrollPane1.setVisible(false);
-        LabelFondoBorroso.setVisible(true);
         BotonparaAgregar.setVisible(false);
         BotonparaEliminar.setVisible(false);
         BotonOrdenar.setVisible(false);
@@ -1019,6 +1224,7 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane1.setVisible(true);
         TablaEMPLEADOS.setVisible(true);
         FrameAgregar.setVisible(false);
+        FrameEliminar.setVisible(false);
         LabelFondoBorroso.setVisible(false);
         BotonparaAgregar.setVisible(true);
         BotonparaEliminar.setVisible(true);
@@ -1043,9 +1249,48 @@ public class Principal extends javax.swing.JFrame {
         Limpiar();        Limpiar();    }//GEN-LAST:event_BotonLimpiarActionPerformed
 
     private void BotonparaEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonparaEliminarActionPerformed
-
+        FrameEliminar.setVisible(true);
+        LabelFondoBorroso.setVisible(true);
+        TablaEMPLEADOS.setVisible(false);
+        jScrollPane1.setVisible(false);
+        BotonparaAgregar.setVisible(false);
+        BotonparaEliminar.setVisible(false);
+        BotonOrdenar.setVisible(false);
+        BotonOrdenarSalario.setVisible(false);
+        BotonSinOrdenar.setVisible(false);
 
     }//GEN-LAST:event_BotonparaEliminarActionPerformed
+
+    private void BotonLimpiar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonLimpiar1ActionPerformed
+        Limpiar();
+        Limpiar();
+    }//GEN-LAST:event_BotonLimpiar1ActionPerformed
+//BOTON ELIMINAR EMPLEADOS
+    private void BotonEliminarEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonEliminarEmpleadosActionPerformed
+        Scanner sc = new Scanner(System.in);
+        EliminarRegistro(sc, "Empleados", TablaEMPLEADOS);
+        LeerNormal(sc, "Empleados", TablaEMPLEADOS);
+        sc.close();
+    }//GEN-LAST:event_BotonEliminarEmpleadosActionPerformed
+
+    private void cerrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrar1ActionPerformed
+        LabelFondoBorroso.setVisible(false);
+        jScrollPane1.setVisible(true);
+        TablaEMPLEADOS.setVisible(true);
+        FrameAgregar.setVisible(false);
+        FrameEliminar.setVisible(false);
+        LabelFondoBorroso.setVisible(false);
+        BotonparaAgregar.setVisible(true);
+        BotonparaEliminar.setVisible(true);
+        BotonOrdenar.setVisible(true);
+        BotonOrdenarSalario.setVisible(true);
+        BotonSinOrdenar.setVisible(true);
+        Limpiar();
+    }//GEN-LAST:event_cerrar1ActionPerformed
+
+    private void fnombreEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fnombreEActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fnombreEActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -1090,7 +1335,9 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonAgregarEmpleados;
+    private javax.swing.JButton BotonEliminarEmpleados;
     private javax.swing.JButton BotonLimpiar;
+    private javax.swing.JButton BotonLimpiar1;
     private javax.swing.JRadioButton BotonOrdenar;
     private javax.swing.JRadioButton BotonOrdenarSalario;
     private javax.swing.JRadioButton BotonSinOrdenar;
@@ -1100,8 +1347,10 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton BotonparaAgregar;
     private javax.swing.JButton BotonparaEliminar;
     private javax.swing.JInternalFrame FrameAgregar;
+    private javax.swing.JInternalFrame FrameEliminar;
     private javax.swing.JLabel LabelFondoBorroso;
     private javax.swing.JPanel PanelAgregarEmpleado;
+    private javax.swing.JPanel PanelEliminarEmpleado;
     private javax.swing.JPanel PanelEmpleados;
     private javax.swing.JPanel PanelInventario;
     private javax.swing.JPanel PanelVentas;
@@ -1109,6 +1358,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTable TablaVENTAS;
     private javax.swing.JLabel TituloPanel;
     private javax.swing.JButton cerrar;
+    private javax.swing.JButton cerrar1;
     private javax.swing.JLabel error1;
     private javax.swing.JLabel error2;
     private javax.swing.JLabel error3;
@@ -1116,10 +1366,12 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel error5;
     private javax.swing.JLabel error6;
     private javax.swing.JLabel error7;
+    private javax.swing.JLabel error9;
     private javax.swing.JTextField fcargo;
     private javax.swing.JTextField fcedula;
     private javax.swing.JTextField ffechaingreso;
     private javax.swing.JTextField fnombre;
+    private javax.swing.JTextField fnombreE;
     private javax.swing.JTextField fsalariocomisiones;
     private javax.swing.JTextField fsalariofijo;
     private javax.swing.JTextField ftelefono;
@@ -1130,7 +1382,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
