@@ -1,4 +1,5 @@
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -15,10 +16,12 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -476,6 +479,11 @@ public class Principal extends javax.swing.JFrame {
 
     }
 
+     
+     
+     
+     //Decoracion
+     
     public static void CambiaEstadoPANEL(JPanel p) {
         p.setVisible(!p.isVisible());
         p.setEnabled(!p.isEnabled());
@@ -483,19 +491,19 @@ public class Principal extends javax.swing.JFrame {
 
     public void CambiarBotones(String Actual) {
         if (Actual.equalsIgnoreCase("PanelInventario")) {
-            Boton_Inventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/inventarriosinfondox63.png")));
+            Boton_Inventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/inventarriosinfondox70.png")));
             Boton_Ventas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/ventassinfondox53.png")));
             Boton_Empleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/empleadosinfondo x53.png")));
         }
         if (Actual.equalsIgnoreCase("PanelVentas")) {
             Boton_Inventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/inventarriosinfondox53.png")));
-            Boton_Ventas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/ventassinfondox63.png")));
+            Boton_Ventas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/ventassinfondox70.png")));
             Boton_Empleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/empleadosinfondo x53.png")));
         }
         if (Actual.equalsIgnoreCase("PanelEmpleados")) {
             Boton_Inventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/inventarriosinfondox53.png")));
             Boton_Ventas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/ventassinfondox53.png")));
-            Boton_Empleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/empleado sin fondox63.png")));
+            Boton_Empleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/empleado sin fondox70.png")));
         }
 
     }
@@ -504,14 +512,13 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Boton_Empleados = new javax.swing.JButton();
         Boton_Ventas = new javax.swing.JButton();
         Boton_Inventario = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        Boton_Empleados = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
         TituloPanel = new javax.swing.JLabel();
         PanelEmpleados = new javax.swing.JPanel();
         FrameAgregar = new javax.swing.JInternalFrame();
@@ -590,56 +597,64 @@ public class Principal extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Boton_Empleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/empleadosinfondo x53.png"))); // NOI18N
-        Boton_Empleados.setBorderPainted(false);
-        Boton_Empleados.setContentAreaFilled(false);
-        Boton_Empleados.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/empleadosinfondo x53brillo.png"))); // NOI18N
-        Boton_Empleados.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Boton_EmpleadosActionPerformed(evt);
-            }
-        });
-        getContentPane().add(Boton_Empleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 60, 60));
-
         Boton_Ventas.setBackground(new java.awt.Color(51, 0, 0));
         Boton_Ventas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/ventassinfondox53.png"))); // NOI18N
         Boton_Ventas.setBorderPainted(false);
         Boton_Ventas.setContentAreaFilled(false);
+        Boton_Ventas.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/ventassinfondox45.png"))); // NOI18N
         Boton_Ventas.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/ventassinfondox53brillo.png"))); // NOI18N
         Boton_Ventas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Boton_VentasActionPerformed(evt);
             }
         });
-        getContentPane().add(Boton_Ventas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 60, 60));
+        getContentPane().add(Boton_Ventas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 80, 70));
 
         Boton_Inventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/inventarriosinfondox53.png"))); // NOI18N
         Boton_Inventario.setBorderPainted(false);
         Boton_Inventario.setContentAreaFilled(false);
+        Boton_Inventario.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/inventarriosinfondox45.png"))); // NOI18N
         Boton_Inventario.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/inventarriosinfondox53brillo.png"))); // NOI18N
         Boton_Inventario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Boton_InventarioActionPerformed(evt);
             }
         });
-        getContentPane().add(Boton_Inventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 60, 60));
+        getContentPane().add(Boton_Inventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 80, 70));
 
-        jButton1.setText("N");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 540, 53, 53));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/Nightx53.png"))); // NOI18N
+        jButton1.setContentAreaFilled(false);
+        jButton1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/Nightx53brillo.png"))); // NOI18N
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 561, 60, 60));
 
-        jButton2.setText("Info.");
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/infosinfondox53.png"))); // NOI18N
+        jButton2.setContentAreaFilled(false);
+        jButton2.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/infosinfondox53brillo.png"))); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 630, 60, 53));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 630, 60, 60));
+
+        Boton_Empleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/empleadosinfondo x53.png"))); // NOI18N
+        Boton_Empleados.setBorderPainted(false);
+        Boton_Empleados.setContentAreaFilled(false);
+        Boton_Empleados.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/empleado sin fondox45.png"))); // NOI18N
+        Boton_Empleados.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/empleadosinfondo x53brillo.png"))); // NOI18N
+        Boton_Empleados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Boton_EmpleadosActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Boton_Empleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 80, 70));
 
         jLabel2.setBackground(new java.awt.Color(255, 204, 204));
         jLabel2.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 2, 36)); // NOI18N
@@ -650,10 +665,6 @@ public class Principal extends javax.swing.JFrame {
         jLabel14.setBackground(new java.awt.Color(51, 0, 0));
         jLabel14.setOpaque(true);
         getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1240, 60));
-
-        jLabel13.setBackground(new java.awt.Color(51, 0, 0));
-        jLabel13.setOpaque(true);
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 80, 660));
 
         TituloPanel.setFont(new java.awt.Font("Adobe Gothic Std B", 0, 48)); // NOI18N
         TituloPanel.setForeground(new java.awt.Color(51, 0, 0));
@@ -1149,6 +1160,10 @@ public class Principal extends javax.swing.JFrame {
 
         getContentPane().add(PanelInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 1160, 640));
 
+        jLabel13.setBackground(new java.awt.Color(51, 0, 0));
+        jLabel13.setOpaque(true);
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 56, 80, 650));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
     JPanel Actual;
@@ -1160,13 +1175,8 @@ public class Principal extends javax.swing.JFrame {
             PanelEmpleados.setEnabled(true);
             CambiaEstadoPANEL(Actual);
             Actual = PanelEmpleados;
-           
             //System.out.println(Actual); } *
-            TituloPanel.setText("|  Empleados");
-//             Boton_Inventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/inventarriosinfondox53.png")));
-//            Boton_Ventas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/ventassinfondox53.png")));
-//            Boton_Empleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/empleado sin fondox63.png")));
-//     
+            TituloPanel.setText("|  Empleados");      
             CambiarBotones("PanelEmpleados");
         }
         /**
@@ -1184,13 +1194,8 @@ public class Principal extends javax.swing.JFrame {
             PanelVentas.setEnabled(true);
             CambiaEstadoPANEL(Actual);
             Actual = PanelVentas;
-           
             TituloPanel.setText("|  Ventas");
             CambiarBotones("PanelVentas");
-//             Boton_Inventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/inventarriosinfondox53.png")));
-//            Boton_Ventas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/ventassinfondox63.png")));
-//            Boton_Empleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/empleadosinfondo x53.png")));
-//      
             //System.out.println(Actual);
         }
     }//GEN-LAST:event_Boton_VentasActionPerformed
@@ -1203,10 +1208,6 @@ public class Principal extends javax.swing.JFrame {
             Actual = PanelInventario;
             TituloPanel.setText("|  Inventario");
             CambiarBotones("PanelInventario");
-//            Boton_Inventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/inventarriosinfondox63.png")));
-//            Boton_Ventas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/ventassinfondox53.png")));
-//            Boton_Empleados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ICONS/empleadosinfondo x53.png")));
-//       
             //System.out.println(Actual);
         }
     }//GEN-LAST:event_Boton_InventarioActionPerformed
